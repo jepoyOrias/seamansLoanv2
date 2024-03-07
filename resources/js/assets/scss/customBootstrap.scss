@@ -1,0 +1,206 @@
+$primary: #0050c2;
+$secondary: #2981ff;
+$success: #63a744;
+$danger: #dc3545;
+$info: #2981ff;
+$warning: #2981ff;
+$light: #f8f9fa;
+$dark: #343a40;
+
+
+body {
+    margin: 0;
+    font-family: var(--bs-body-font-family);
+    font-size: var(--bs-body-font-size);
+    font-weight: var(--bs-body-font-weight);
+    line-height: var(--bs-body-line-height);
+    color: var(--bs-body-color);
+    text-align: var(--bs-body-text-align);
+    background-color: var(--bs-body-bg);
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+body {
+    font-weight: 400;
+    line-height: 1.6;
+}
+html * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+*, :after, :before {
+    box-sizing: border-box;
+}
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    --bs-gutter-x: 1.5rem !important;
+    --bs-gutter-y: 0 !important;
+    width: 100% !important;
+    padding-right: calc(var(--bs-gutter-x) * 1) !important;
+    padding-left: calc(var(--bs-gutter-x) * 1) !important;
+    margin-right: auto !important;
+    margin-left: auto !important;
+}
+// All Hpver Effects
+.move-on-hover:hover {
+    transform: perspective(999px) rotateX(7deg) translate3d(0,-4px,5px);
+}
+.move-on-hover {
+    transition: .2s ease-out;
+    overflow: hidden;
+    transform-origin: 50% 0;
+    transform: perspective(999px) rotateX(0deg) translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    will-change: transform,box-shadow;
+}
+//All Buttons Declarations will go here
+.btn-primary{
+    --bs-btn-color: #fff !important;
+  
+}
+
+.btn-primary:hover , .btn-outline-primary:hover{
+    --bs-btn-hover-color:#fff !important;
+}
+//All Buttons Declarations Ends Here
+
+//All BackgroundColor Declarations will go here
+.bg-gradient-primary {
+    background-image: linear-gradient(310deg,#003b8f,#0064f5);
+}
+//All BackgroundColor Declarations Ends Here
+
+//All Text CSS Declarations will go here
+.text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    z-index: 1;
+}
+.text-gradient.text-primary {
+    background-image: radial-gradient(circle, #003b8f, #0064f5);
+}
+
+//All Text CSS Declarations Ends Here
+.border-radius-xl {
+    border-radius: 1rem;
+}
+.z-index-2 {
+    z-index: 2!important;
+}
+@media screen and (min-width:1441px)  {
+    .mt-n10 {
+        margin-top: -15rem!important;
+    }
+}
+@media screen and (min-width:992px) and (max-width:1440px) {
+    .mt-n10 {
+        margin-top: -12rem!important;
+    }
+}
+@media screen and (max-width:920px) {
+    .mt-n10 {
+        margin-top: -10rem!important;
+    }
+}
+
+.mt-n3 {
+    margin-top: -1rem!important;
+}
+
+.z-index-1{
+    z-index: index 1;
+}
+.shadow-blur {
+    box-shadow: inset 0 0 1px 1px hsla(0,0%,100%,.9),0 20px 27px 0 rgba(0,0,0,.05)!important;
+}
+.blur {
+    box-shadow: inset 0 0 2px #fefefed1;
+    -webkit-backdrop-filter: saturate(200%) blur(30px);
+    backdrop-filter: saturate(200%) blur(30px);
+    background-color: hsla(0,0%,100%,.8)!important;
+}
+hr.vertical.dark {
+    background-image: linear-gradient(180deg,transparent,rgba(0,0,0,.4),transparent);
+}
+hr.vertical {
+    position: absolute;
+    background-color: transparent;
+    height: 100%;
+    right: 0;
+    top: 0;
+    width: 1px;
+}
+
+.form-control, .form-control:focus{
+    outline: none !important;
+    box-shadow: none !important;
+   
+}
+.form-control:focus{
+    border: 2px dashed var(--bs-primary) !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none ;
+  margin: 0;
+}
+
+
+.model {
+    position: absolute; /* Position the image absolutely within the container */
+    top: 50%; /* Align the top of the image to the center of the container */
+    left: 50%; /* Align the left of the image to the center of the container */
+    transform: translate(-45%, -50%); /* Center the image within the container */
+    width: 50%; /* Ensures the image fills the container */
+    height: auto; /* Maintains aspect ratio */
+    overflow: hidden; /* Clips the image to the circular shape */
+    
+  }
+  .image-container {
+    display: inline-block; /* Ensures the container takes the shape of its contents */
+    width: 100%;
+    height: 500px; /* Adjust as needed */
+    border-radius: 30px;
+    background: linear-gradient(90deg,#0045a8 20%, #0050c2 10%,#005adb 10%,#0064f5);/* Background color of the circular container */
+    overflow: hidden; /* Clips the image to the container's border-radius */
+    top: 100px;
+  }
+.mt-8rem{
+    margin-top: 8rem !important;
+}
+@media  screen and (max-width:919px) {
+    .mt-8rem{
+        margin-top: 5rem !important;
+    }
+}
+
+.card {
+    box-shadow: 0 20px 27px 0 rgba(0,0,0,.05);
+    border: none !important;
+}
+
+.card.card-plain {
+    background-color: transparent;
+    box-shadow: none;
+    background-size: contain;
+}
+.mt-5 {
+    margin-top: 3rem!important;
+}
+
+.card-profile img { 
+    width: auto;
+    height: 190px;
+}   
+
+.border-radius-md {
+    border-radius: 0.5rem;
+}
+.modal-open{
+    overflow: hidden !important;
+}
+@import "../node_modules/bootstrap/scss/bootstrap";
