@@ -1,67 +1,152 @@
 <template>
    <!-- Card Section -->
-<div class="max-w-5xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+
   <!-- Grid -->
-  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
+  <!-- Card Blog -->
+<div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+  <!-- Grid -->
+  <div class="grid sm:grid-cols-2 gap-5  mx-auto max-w-[70rem]">
     <!-- Card -->
-    <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-      <div class="p-4 md:p-5">
-        <div class="flex">
-          <svg class="mt-1 flex-shrink-0 size-5 text-gray-800 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-
-          <div class="grow ms-5">
-            <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-              Ask our community
-            </h3>
-            <p class="text-sm text-gray-500">
-              Get help from 40k+ Preline users
-            </p>
-          </div>
-        </div>
+    <div class="lg:max-w-[500px] group justify-center flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+      <div class="p-4 md:p-6">
+        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          Borrower Requirements
+        </h3>
+        <p class="dark:text-yellow-500 text-xs text-blue-900">
+          Copies via Xerox, Scan, or Picture
+        </p>
+        <ul class="space-y-3 text-sm my-5">
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Latest POEA Validated Contract and Overseas Employment Certificate (OEC)
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Latest Passport and Seaman’s Book
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              E-Registration
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Last stamped on Seaman's Book
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Latest Electric Bill or Water Bill
+            </span>
+          </li>
+        </ul>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          Additional Requirements for On-Board
+        </h3>
+        <ul class="space-y-3 text-sm my-5">
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Allotment Certificate
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Boarding Pass
+            </span>
+          </li>
+        </ul>
       </div>
-    </a>
+    
+    </div>
     <!-- End Card -->
 
     <!-- Card -->
-    <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-      <div class="p-4 md:p-5">
-        <div class="flex">
-          <svg class="mt-1 flex-shrink-0 size-5 text-gray-800 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>
-
-          <div class="grow ms-5">
-            <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-              Get help in the app
-            </h3>
-            <p class="text-sm text-gray-500">
-              Just head to «Help» in the app
-            </p>
-          </div>
-        </div>
+    <div class="lg:max-w-[500px] group flex flex-col h-full bg-white border border-gray-200 shadow-sm rounded-xl dark:bg-slate-900 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+      <div class="p-4 md:p-6">
+        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          Co-Borrower Requirements
+        </h3>
+        <p class="dark:text-yellow-500 text-xs text-blue-900">
+          Copies via Xerox, Scan, or Picture
+        </p>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white my-3">
+          If married or in a common-law relationship
+        </h3>
+        <ul class="space-y-3 text-sm my-5">
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              2 government-issued IDs
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Marriage certificate or birth certificate of the child
+            </span>
+          </li>
+        </ul>
+        <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-300 dark:hover:text-white">
+          If single (Sibling or parent)
+        </h3>
+        <ul class="space-y-3 text-sm my-5">
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              2 government-issued IDs
+            </span>
+          </li>
+          <li class="flex space-x-3">
+            <svg class="flex-shrink-0 size-4 mt-0.5 text-blue-900  dark:text-yellow-500" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span class="text-gray-600 dark:text-white">
+              Birth certificate
+            </span>
+          </li>
+        </ul>
       </div>
-    </a>
+      
+    </div>
     <!-- End Card -->
+   
 
-    <!-- Card -->
-    <a class="group flex flex-col bg-white border shadow-sm rounded-xl hover:shadow-md transition dark:bg-slate-900 dark:border-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href="#">
-      <div class="p-4 md:p-5">
-        <div class="flex">
-          <svg class="mt-1 flex-shrink-0 size-5 text-gray-800 dark:text-gray-200" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.2 8.4c.5.38.8.97.8 1.6v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V10a2 2 0 0 1 .8-1.6l8-6a2 2 0 0 1 2.4 0l8 6Z"/><path d="m22 10-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 10"/></svg>
-
-          <div class="grow ms-5">
-            <h3 class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
-              Email us
-            </h3>
-            <p class="text-sm text-gray-500">
-              Reach us at <span class="text-blue-600 font-medium dark:text-blue-500">info@site.com</span>
-            </p>
-          </div>
-        </div>
-      </div>
-    </a>
     <!-- End Card -->
   </div>
   <!-- End Grid -->
 </div>
+<!-- End Card Blog -->
+  <!-- End Grid -->
+
 <!-- End Card Section -->
 </template>
 

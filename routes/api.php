@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\CreateAdminController;
+use App\Http\Controllers\LoanController;
+use App\Http\Controllers\RepaymentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('loans', [LoanController::class, 'store']);
+Route::post('createpayment', [RepaymentController::class, 'store']);
+Route::patch('loans/{id}', [LoanController::class, 'update']);
+Route::post('/admin/register', [CreateAdminController::class, 'store'])->name('admin.register');

@@ -10,18 +10,19 @@
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+      
         <!-- Scripts -->
       
         @routes
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         {{-- @inertiaHead --}}
     </head>
-    <body class="font-sans antialiased dark:bg-gray-900">
+    <body class="font-sans antialiased bg-white  dark:bg-slate-900">
         @inertia
         <div class="fixed bottom-0 right-0 mb-4 mr-4">
            
           </div>
-          
+        
     </body>
 </html>

@@ -1,32 +1,32 @@
 <template>
     <!-- ====== About Section Start -->
-    <section class="overflow-hidden pt-20 pb-12 lg:pt-[120px] lg:pb-[90px] bg-none max-w-[85rem] mx-auto">
+    <section class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
       <div class="container mx-auto">
         <div class="flex flex-wrap items-center justify-between -mx-4">
           <div class="w-full px-4 lg:w-6/12">
             <div class="flex items-center -mx-3 sm:-mx-4">
               <div class="w-full px-3 sm:px-4 xl:w-1/2">
-                <div class="py-3 sm:py-4">
+                <div class="py-3 sm:py-4 relative z-10">
                   <img
-                    src="https://cdn.tailgrids.com/2.0/image/marketing/images/about/about-01/image-1.jpg"
+                    src="../../assets/images/aboutUs/a3.jpg"
                     alt=""
                     class="w-full rounded-2xl"
                   />
                 </div>
-                <div class="py-3 sm:py-4">
+                <div class="py-3 sm:py-4 relative z-10">
                   <img
-                    src="https://cdn.tailgrids.com/2.0/image/marketing/images/about/about-01/image-2.jpg"
+                    src="../../assets/images/aboutUs/a2.jpg"
                     alt=""
                     class="w-full rounded-2xl"
                   />
                 </div>
               </div>
               <div class="w-full px-3 sm:px-4 xl:w-1/2">
-                <div class="relative z-10 my-4">
+                <div class="relative z-10 my-4 min-h-[400px]">
                   <img
-                    src="https://cdn.tailgrids.com/2.0/image/marketing/images/about/about-01/image-3.jpg"
+                    src="../../assets/images/aboutUs/a1.jpg"
                     alt=""
-                    class="w-full rounded-2xl"
+                    class="w-full rounded-2xl "
                   />
                   <span class="absolute -right-7 -bottom-7 z-[-1]">
                     <svg
@@ -604,18 +604,16 @@
           </div>
           <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
             <div class="mt-10 lg:mt-0">
-              <span class="block mb-4 text-lg font-semibold text-primary dark:text-yellow-200"> Why Choose Us </span>
+              <span class="block mb-4 text-lg font-semibold text-primary dark:text-slate-50">About Us</span>
               <h2 class="mb-5 text-3xl font-bold text-dark dark:text-yellow-500 sm:text-[40px]/[48px]">
-                Make your customers happy by giving services.
+                At Seaman Loan Express, our commitment to customer satisfaction is unwavering
               </h2>
               <p class="mb-5 text-base text-body-color dark:text-white">
-                It is a long established fact that a reader will be distracted by the readable content
-                of a page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                more-or-less.
+                Since our establishment in 2021, we have been dedicated to providing exceptional services tailored to the unique needs of seafarers. Our track record speaks for itself, having served over 3000 seafarers in 2023 alone, with a total loan disbursement exceeding 100 million pesos. We take pride in our ability to understand the challenges and requirements of the maritime industry, and we strive to exceed expectations at every opportunity.
+                
               </p>
               <p class="mb-8 text-base text-body-color dark:text-white">
-                A domain name is one of the first steps to establishing your brand. Secure a
-                consistent brand image with a domain name that matches your business.
+                With Seaman Loan Express, you can trust that you're not just a customer, but a valued member of our seafaring community.
               </p>
               <a
                 href="javascript:void(0)"

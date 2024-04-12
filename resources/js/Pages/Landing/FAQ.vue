@@ -14,60 +14,60 @@
     <div class="grid sm:grid-cols-2 gap-6 md:gap-12">
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Can I cancel at anytime?
+          What are the interest rates offered?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Yes, you can cancel anytime no questions are asked while you cancel but we would highly appreciate if you will give us some feedback.
+          Interest rates range from as low as 1.99% to 2.5%.
         </p>
       </div>
       <!-- End Col -->
 
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          My team has credits. How do we use them?
+          How long does the processing take?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Once your team signs up for a subscription plan. This is where we sit down, grab a cup of coffee and dial in the details.
+          We typically process loans within 1 day
         </p>
       </div>
       <!-- End Col -->
 
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          How does Preline's pricing work?
+          What are the available loan terms?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Our subscriptions are tiered. Understanding the task at hand and ironing out the wrinkles is key.
+          Loan terms range from 3 to 12 months. However, terms are subject to contract agreements.
         </p>
       </div>
       <!-- End Col -->
 
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          How secure is Preline?
+          Do you have a physical address?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          Protecting the data you trust to Preline is our first priority. This part is really crucial in keeping the project in line to completion.
+          Yes, our office is located at 638 TM Kalaw Room 203, 2nd floor, San Luis Terraces Building. Our landmark is at the back of Manila Doctors Hospital. Please look for Ian Lofranco.
         </p>
       </div>
       <!-- End Col -->
 
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          Do you offer discounts?
+          What payment methods do you accept?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          We've built in discounts at each tier for teams. The time has come to bring those ideas and plans to life.
+          We accept payments through various channels including Cebuana, Palawan, M Lhuillier, Gcash, etc.
         </p>
       </div>
       <!-- End Col -->
 
       <div>
         <h3 class="text-lg font-semibold text-gray-800 dark:text-gray-200">
-          What is your refund policy?
+          What is the range of loanable amounts?
         </h3>
         <p class="mt-2 text-gray-600 dark:text-gray-400">
-          We offer refunds. We aim high at being focused on building relationships with our clients and community.
+          Loan amounts range from ₱30,000 to ₱1 million.
         </p>
       </div>
       <!-- End Col -->
