@@ -1,188 +1,84 @@
 <template>
     <div>
-        <div class="sm:col-span-3">
-                <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    LOAN PURPOSE *
+        <h2 class="text-blue-900 dark:text-yellow-500 font-bold text-2xl mt-10 mb-3">Loan Information</h2>
+        <div v-for="([key, value], index) in filteredEntries" :key="index">
+            <div class="sm:col-span-3 my-2">
+                <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200 uppercase">
+                    {{ value.label }} {{ value.required ? '*' : '' }}
                 </label>
             </div>
-        <div>
-            <select class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-             value="loan_purpose"
-                 v-model="selectedPurpose" 
-                 
-                :hasError="selectedPurpose != 'Others' && validator.loan.loan_information.loan_purpose.$error"
-                :errors="validator.loan.loan_information.loan_purpose.$errors">
-                <option disabled > Open this select menu </option>
-                <option v-for="(option, index) in options " :key="index" :value="option.value"> {{ option.label }} </option> 
-            </select> 
-        </div>
-              
-        <div v-if="selectedPurpose != 'Others'">
-                        <p v-for="(error, index) in validator.loan.loan_information.loan_purpose.$errors" :key="index" 
-                        class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
-                        {{ error.$message }}
-                        </p>
-        </div>
-        
-        <InputText 
-                class="my-3" v-if="selectedPurpose == 'Others'" 
-                 v-model:model="loanInformation.loan_purpose"
-                    label="other purpose *"
-                    :hasError="validator.loan.loan_information.loan_purpose.$error"
-                     :errors="validator.loan.loan_information.loan_purpose.$errors"
-                    inputType="text"
-                  />
-
-                 
-         <InputText 
-            class="my-3"
-            v-model:model="loanInformation.amount"
-            label="loan Amount *"
-            :hasError="validator.loan.loan_information.amount.$error"
-            :errors="validator.loan.loan_information.amount.$errors"
-            inputType="text"
-            /> 
-            <div class="sm:col-span-3">
-                <label class="inline-block text-sm text-gray-800 mt-2.5 dark:text-gray-200">
-                    TERM *
-                </label>
+            <div v-if="value.inputType === 'selectOption' && key == 'loan_purpose'">
+                <select :class="{
+                    'focus:border-red-500 focus:ring-red-500 border-red-500': validator.hasError(key),
+                    'dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400': !validator.hasError(key),
+                    'py-3 px-4 block w-full rounded-lg text-sm relative dark:text-white dark:bg-gray-800 bg-transparent': true
+                }" 
+                     v-model="selectedPurpose" @change="GetSelectedOption(key)">
+                    <option disabled> Open this select menu </option>
+                    <option v-for="(option, index) in value.options " :key="index" :value="option.value"> {{
+            option.label }} </option>
+                </select>
+                <InputText class="my-3" v-if="selectedPurpose == 'Others'" v-model:model="loanInformation[key]"
+                    :field="key" label="other purpose *" :objValidator="validator"
+                    @input="validator.removeError(key)" />
+                <div v-if="validator.hasError(key)">
+                    <p class="text-sm text-red-600 mt-2 dark:text-white " :id="`hs-validation-${key}-error-helper`">
+                        {{ validator.getError(key) }}
+                    </p>
+                </div>
             </div>
-            <div>
-            <select class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400"
-             value="term_months"
-             v-model="loanInformation.term_months" 
-                :hasError="validator.loan.loan_information.term_months.$error"
-                :errors="validator.loan.loan_information.term_months.$errors">
-                <option seleted="" > Open this select menu</option>
-                <option v-for="(option, index) in options2 " :key="index" :value="option.value"> {{ option.label }} </option> 
-            </select> 
-        </div>
-        <div >
-                        <p v-for="(error, index) in validator.loan.loan_information.term_months.$errors" :key="index" 
-                        class="text-sm text-red-600 mt-2" id="hs-validation-name-error-helper">
-                        {{ error.$message }}
-                        </p>
-        </div>
-            
-            
+            <div v-else-if="value.inputType === 'selectOption'">
+                <select :class="{
+            'focus:border-red-500 focus:ring-red-500 border-red-500': validator.hasError(key),
+            'dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400': !validator.hasError(key),
+            'py-3 px-4 block w-full rounded-lg text-sm relative dark:text-white dark:bg-gray-800 bg-transparent': true
+        }" value="loan_purpose" v-model="loanInformation[key]" @change="validator.removeError($event,key)">
+                    <option disabled> Open this select menu </option>
+                    <option v-for="(option, index) in value.options " :key="index" :value="option.value"> {{
+            option.label }} </option>
+                </select>
+                <div v-if="validator.hasError(key)">
+                    <p class="text-sm text-red-600 mt-2 dark:text-white" :id="`hs-validation-${key}-error-helper`">
+                        {{ validator.getError(key) }}
+                    </p>
+                </div>
+            </div>
+            <InputText v-else class="my-3" v-model:model="loanInformation[key]" :field="key" 
+                v-model:objValidator="validator" @input="validator.removeError(key)" />
 
+        </div>
     </div>
 </template>
 
 <script setup>
 import InputText from "@/Components/Input/InputText.vue";
-import { watchEffect,ref } from 'vue';
+import { watchEffect, ref, computed, onMounted } from 'vue';
 
-    const loanInformation = defineModel('loanInformation',{default:{}})
-    const validator = defineModel('validator')
-    console.log('validator from LI',validator)
+const loanInformation = defineModel('loanInformation', { default: {} })
+const validator = defineModel('objValidator')
 
-    const options = [
-        {
-            label:'PERSONAL/FAMILY EXPENSES',
-            value:'Personal/Family Expenses',
-        },
-        {
-            label:'HOME PURCHASE/DEVELOPMENT',
-            value:'Home Purchase/Development',
-        },
-        {
-            label:'HOUSE RENOVATION',
-            value:'House Renovation',
-        },
-        
-        {
-            label:'LAND PURCHASE/DEVELOPMENT',
-            value:'Land Purchase/Development',
-        },
-        {
-            label:'VEHICLE PURCHASE',
-            value:'Vehile Purchase',
-        },
-        {
-            label:'WORKING CAPITAL/BUSINESS CAPITAL',
-            value:'Working Capital/Business Capital',
-        },
-        {
-            label:'EDUCATIONAL ASSISTANCE',
-            value:'Educational Assistance',
-        },
-        {
-            label:'MEDICAL ASSISTANCE',
-            value:'Medical Assistance',
-        },
-        {
-            label:'APPLIANCES / ASSET PURCHASE',
-            value:'Appliaces/Asset Purchase',
-        },
-        {
-            label:'OTHERS',
-            value:'Others',
-        },
-    ]
-    const options2 = [
-        {
-            label:'1 MONTH',
-            value:'1 Month',
-        },
-        {
-            label:'2 MONTHS',
-            value:'2 Months',
-        },
-        {
-            label:'3 MONTHS',
-            value:'3 Month',
-        },
-        {
-            label:'4 MONTHS',
-            value:'4 Months',
-        },
-        {
-            label:'5 MONTHS',
-            value:'5 Months',
-        },
-        {
-            label:'6 MONTHS',
-            value:'6 Months',
-        },
-        {
-            label:'7 MONTHS',
-            value:'7 Months',
-        },
-        {
-            label:'8 MONTHS',
-            value:'8 Months',
-        },
-        {
-            label:'9 MONTHS',
-            value:'9 Months',
-        },
-        {
-            label:'10 MONTHS',
-            value:'10 Months',
-        },
-        {
-            label:'11 MONTHS',
-            value:'11 Months',
-        },
-        {
-            label:'12 MONTHS',
-            value:'12 Months',
-        },
-    ]
+const filteredEntries = computed(() => {
+    return Object.entries(validator.value.fields).filter(([key, value]) => value.type === 'loan_information');
+});
 
-        const selectedPurpose = ref('');
-    watchEffect(() => {
-      if(selectedPurpose.value == 'Others' ){
+
+const selectedPurpose = ref('');
+onMounted(()=>{
+    selectedPurpose.value =  loanInformation.value.loan_purpose;
+
+})
+
+const GetSelectedOption = ($event,key)=>{
+    console.log($event);
+    validator.value.removeError(key);
+    if (selectedPurpose.value == 'Others') {
         loanInformation.value.loan_purpose = ''
 
-      }else{
+    } else {
         loanInformation.value.loan_purpose = selectedPurpose.value
-      }
-      
-    });
+    }
+}
+
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

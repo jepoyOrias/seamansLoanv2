@@ -7,10 +7,19 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref, watch, watchEffect } from 'vue';
   
   const isOpen = defineModel('isOpen',{default:false});
   
+
+  watchEffect(()=>{
+    if(isOpen.value){
+      document.body.classList.add('modal-open');
+    }else{
+      document.body.classList.remove('modal-open');
+    }
+  })
+
   const openModal = () => {
     isOpen.value = true;
   };
@@ -56,5 +65,8 @@
   .modal-fade-leave-active {
     transition: opacity 0.2s ease;
   }
+
+
+  
   
   </style>

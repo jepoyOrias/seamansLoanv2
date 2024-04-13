@@ -8,6 +8,7 @@ use App\Models\LoanInformation;
 use App\Models\PersonalInformation;
 use App\Models\Releasing;
 use App\Models\Requirements;
+use Carbon\Carbon;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -47,10 +48,12 @@ class LoanRepository
     public function createLoanWithRelatedData(array $data, $id = null)
     {
         DB::beginTransaction();
-
         try {
             // Create PersonalInformation
-            $personalInformation = PersonalInformation::create($data['personal_information']);
+            $data['personal_information']['birth_date'] = date('Y-m-d', strtotime($data['personal_information']['birth_date']));
+            $personalInformationData = $data['personal_information'];
+            $personalInformation = PersonalInformation::create($personalInformationData);
+            
 
             // Create EmployerInformation
             $personalInformation->employerInformation()->create($data['employer_information']);
@@ -81,6 +84,7 @@ class LoanRepository
             // Create Coborrowers
             foreach ($data['coborrowers'] as $coborrowerData) {
                 $coborrowerData['personal_information_id'] = $personalInformation->id;
+                $coborrowerData['birth_date'] = date('Y-m-d', strtotime($coborrowerData['birth_date']));
                 $coborrower = Coborrower::create($coborrowerData);
                 $personalInformation->coborrowers()->save($coborrower);
             }
@@ -100,6 +104,7 @@ class LoanRepository
 
             // Create Releasing
             $releasingData = $data['releasings'];
+            $releasingData['date_opened'] = date('Y-m-d', strtotime($releasingData['date_opened']));
             $releasingData['loan_information_id'] = $loan->id;
             Releasing::create($releasingData);
 

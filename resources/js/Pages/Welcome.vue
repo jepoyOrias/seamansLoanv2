@@ -129,10 +129,6 @@ const persons = ref({
     <section class="mt-[50px] sm:mt-[100px]" >
       <Hero @scrollToELements="scrollToELements" v-model:isApplyNowModal="isApplyNowModal"/>
     </section>
-
-    <VueTailwindDatePicker>
-
-    </VueTailwindDatePicker>
   <section class="mt-[50px] sm:mt-[100px]">
     <Featrue2 />
   </section>
@@ -178,5 +174,7 @@ const persons = ref({
 </template>
 
 <style>
-
+.modal-open{
+    overflow: hidden;
+}
 </style>

@@ -183,7 +183,7 @@ class LoanController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(LoanInformationStoreRequest $loanInformationRequest,)
+    public function store(LoanInformationStoreRequest $loanInformationRequest)
     {
        $validatedData = $loanInformationRequest->validated();
        $createdLoan =  $this->loanService->createLoanWithRelatedData($validatedData);

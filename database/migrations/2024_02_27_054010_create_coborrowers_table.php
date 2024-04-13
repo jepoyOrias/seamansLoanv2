@@ -13,7 +13,10 @@ return new class extends Migration
     {
         Schema::create('coborrowers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('lastname');
+            $table->string('firstname');
+            $table->string('middlename');
+            $table->string('suffix')->nullable();
             $table->string('email')->unique();
             $table->string('civil_status');
             $table->date('birth_date');
@@ -28,6 +31,9 @@ return new class extends Migration
             $table->string('nationality')->default('Filipino');
             $table->string('phone_number')->unique();
             $table->string('facebook_account_name');
+            $table->string('TIN_NO');
+            $table->string('SSS_NO');
+            $table->string('PAGIBIG_NO');
             $table->string('education');
             $table->string('source_of_fund');
             $table->unsignedBigInteger('personal_information_id');

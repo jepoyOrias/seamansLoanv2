@@ -9,6 +9,7 @@ use Illuminate\Validation\Rule;
 class PersonalInformation extends Model
 {
     use HasFactory;
+    
     protected $fillable = [
         'lastname',
         'firstname',
@@ -19,9 +20,15 @@ class PersonalInformation extends Model
         'birth_date',
         'place_of_birth',
         'present_address',
+        'present_address_length',
         'address_ownership',
         'permanent_address',
+        'permanent_address_length',
         'provincial_address',
+        'provincial_address_length',
+        'TIN_NO',
+        'SSS_NO',
+        'PAGIBIG_NO',
         'nationality',
         'phone_number',
         'facebook_account_name',
