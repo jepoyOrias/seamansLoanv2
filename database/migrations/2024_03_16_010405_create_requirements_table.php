@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('valid_id_1')->nullable();
             $table->string('valid_id_2')->nullable();
             $table->string('marriage_contract')->nullable();
+            $table->string('signature')->nullable();
             $table->string('send_it_thru')->default('Application Form')->nullable();
             $table->timestamps();
         });

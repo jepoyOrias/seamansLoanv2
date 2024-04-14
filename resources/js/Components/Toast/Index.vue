@@ -20,6 +20,7 @@
                           {{ props.toast.confirmButton }}
                         </button>
                         <button type="button"
+                            v-if="props.toast.showCancelButton"
                             @click.prevent="props.toast.onClickCancel"
                             class="inline-flex items-center  me-0 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:text-blue-800 dark:text-blue-500 dark:focus:text-blue-400">
                             {{props.toast.cancelButton}}

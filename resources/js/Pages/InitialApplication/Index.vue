@@ -68,6 +68,7 @@ import Button from '@/Components/Buttons/Index.vue';
 import Toast from '@/Components/Toast/Index.vue';
 import NoData from '@/Components/NoData/Index.vue';
 import axios from 'axios';
+import {downloadZip} from '@/utility/downloadFile';
 
 const searchQuery = ref('');
 const page = usePage();
@@ -167,13 +168,7 @@ const tableHeader = ref([
   },
 ]);
 
-const downloadZip = (url, e) => {
-  const link = document.createElement('a');
-  link.href = url;
-  link.setAttribute('download', 'application-forms.zip');
-  document.body.appendChild(link);
-  link.click();
-}
+
 
 const generateApplicationForm = (e) => {
 
@@ -189,9 +184,10 @@ const generateApplicationForm = (e) => {
       icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle shrink-0 text-green-300"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
       message: 'Application Form ZIP is now ready to download',
       cancelButton: 'Close',
+      showCancelButton: true,
       onClickCancel: () => { objToast.value = null },
       onClickConfirm: (e) => {
-        downloadZip(window.URL.createObjectURL(new Blob([response.data]), e));
+        downloadZip(window.URL.createObjectURL(new Blob([response.data]), e, "application-forms.zip"));
         objToast.value = null;
         refreshDashboardData();
       },

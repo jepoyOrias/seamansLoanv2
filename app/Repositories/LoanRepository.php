@@ -67,9 +67,25 @@ class LoanRepository
             $requirementsAttributes = [];
             foreach ($requirementsData as $requirementName => $requirementFile) {
                 if ($requirementFile instanceof \Illuminate\Http\UploadedFile) {
+                    // Get the original filename
+                    $originalFilename = $requirementFile->getClientOriginalName();
+                    
+                    // Extract the file extension
+                    $extension = $requirementFile->getClientOriginalExtension();
+                    
+                    // Get the column name (assuming $requirementName is in the format column_name_date)
+                    $columnName = explode('_', $requirementName)[0]; // Extract the column name
+                    
+                    // Generate the new filename with the column name and current date
+                    $newFilename = $columnName . '_' . now()->format('Ymd_His') . '.' . $extension;
+            
                     // Handle file upload
-                    $filePath = $requirementFile->store("images/personal_information/{$personalInformation->id}/requirements", 'public');
-
+                    $filePath = $requirementFile->storeAs(
+                        "images/personal_information/{$personalInformation->id}/requirements",
+                        $newFilename,
+                        'public'
+                    );
+            
                     // Save file path to the requirements attributes
                     $requirementsAttributes[$requirementName] = $filePath;
                 } else {

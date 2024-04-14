@@ -22,6 +22,7 @@ class Requirements extends Model
         'valid_id_2',
         'marriage_contract',
         'send_it_thru',
+        'signature'
     ];
 
     public function personalInformation()

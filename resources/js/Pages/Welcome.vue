@@ -4,22 +4,17 @@ import Navbar from '../Components/Navbar/Navbar.vue';
 import Hero from './Landing/Hero.vue';
 import WhyUs from './Landing/WhyUs.vue';
 import Counting from './Landing/Counting.vue';
-import MyTeam from './Landing/MyTeam.vue'
 import AboutUs from './Landing/AboutUs.vue';
 import AboutUs2 from './Landing/AboutUs2.vue';
-import Feature from './Landing/Feature.vue';
 import FeatureNavs from './Landing/FeatureNavs.vue';
 import FAQ from './Landing/FAQ.vue';
 import Featrue2 from './Landing/Feature2.vue'
 import Featrue3 from './Landing/Feature3.vue'
 import Footer from '@/Components/Footer/Index.vue';
-import SignaturePad from '@/Components/SignaturePad/Index.vue'
-import ApplyModal from '@/Components/Apply/ApplyModal.vue';
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers } from '@vuelidate/validators'
 import ContactUs from './Landing/ContactUs.vue'
 import {onMounted, onUnmounted, onUpdated, ref, watch, watchEffect} from 'vue';
-import VueTailwindDatePicker from 'vue-tailwind-datepicker';
 const isApplyNowModal = ref(false);
 defineProps({
   canLogin: {

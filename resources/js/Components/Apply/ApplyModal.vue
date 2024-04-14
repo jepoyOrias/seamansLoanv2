@@ -54,7 +54,6 @@
 
                 <BankAccounts v-model:bankAccounts="loan.releasings" v-model:objValidator="objValidator">
                 </BankAccounts>
-
                 <!-- Other fields for step 1 -->
               </div>
               <div v-else-if="currentStep === 1">
@@ -69,9 +68,8 @@
               </div>
               <!-- Add more steps as needed -->
               <div v-else-if="currentStep === 2">
-                <Requirements v-model:requirements="loan.requirements" v-model:validator="step3Validator">
+                <Requirements v-model:requirements="loan.requirements"  v-model:objValidator="objValidator">
                 </Requirements>
-                TEST 3
               </div>
             </div>
 
@@ -79,7 +77,7 @@
             <div class="flex justify-between items-center px-8 py-4">
               <button @click="prevStep" :disabled="currentStep === 0"
                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Previous</button>
-              <button @click="nextStep" :disabled="currentStep === steps.length - 1"
+              <button @click="nextStep"
                 class="px-4 py-2 bg-blue-500 text-white rounded-md">Next</button>
 
 
@@ -285,6 +283,7 @@ const loan = ref({
   requirements: {
     contract: null,
     seaman_book: null,
+    passport: null,
     e_reg: null,
     sirb: null,
     bill: null,
@@ -292,6 +291,7 @@ const loan = ref({
     valid_id_2: null,
     marriage_contract: null,
     send_it_thru: null,
+    signature: null
   }
 })
 
@@ -339,15 +339,16 @@ objValidator.value.fields = {
   office_address: { required: true, inputType: 'text', label: 'Address', type: 'employer_information' },
   
 
-  contract: { required: true, inputType: 'text', label: 'Contract', type: 'requirements' },
-  seaman_book: { required: true, inputType: 'text', label: "Seaman's Book", type: 'requirements' },
-  e_reg: { required: true, inputType: 'text', label: 'E-Registration', type: 'requirements' },
-  sirb: { required: true, inputType: 'text', label: 'SIRB', type: 'requirements' },
-  bill: { required: true, inputType: 'text', label: 'bill', type: 'requirements' },
-  valid_id_1: { required: true, inputType: 'text', label: 'Government Valid ID 1', type: 'requirements' },
-  valid_id_2: { required: true, inputType: 'text', label: 'Government Valid ID 2', type: 'requirements' },
-  marriage_contract: { required: true, inputType: 'text', label: 'Marriage Contract', type: 'requirements' },
-
+  contract: { required: true, inputType: 'file', label: 'Contract', type: 'requirements' },
+  seaman_book: { required: true, inputType: 'file', label: "Seaman's Book", type: 'requirements' },
+  passport: { required: true, inputType: 'file', label: "Passport", type: 'requirements' },
+  e_reg: { required: true, inputType: 'file', label: 'E-Registration', type: 'requirements' },
+  sirb: { required: true, inputType: 'file', label: 'SIRB', type: 'requirements' },
+  bill: { required: true, inputType: 'file', label: 'bill', type: 'requirements' },
+  valid_id_1: { required: true, inputType: 'file', label: 'Government Valid ID 1', type: 'requirements' },
+  valid_id_2: { required: true, inputType: 'file', label: 'Government Valid ID 2', type: 'requirements' },
+  marriage_contract: { required: true, inputType: 'file', label: 'Marriage Contract', type: 'requirements' },
+  signature: { required: true, inputType: 'file', label: 'Signature', type: 'requirements' },
 }
 
 
@@ -390,22 +391,25 @@ const nextStep = () => {
       return false;
     }
   }
-  // else if(currentStep.value == 1 && objValidator.value.validateFields({ ...loan.value.requirements})){
-  //   hasError = true;
-  //   return false;
-  // }
+  else if(currentStep.value == 2 && objValidator.value.validateFields({ ...loan.value.requirements})){
+    console.log(objValidator.value.getFieldsKeyWithError());
+    hasError = true;
+    return false;
+  }
 
-  if(currentStep.value == 1  &&  !hasError){
-   axios.post('loans', loan.value).then(response => {
+  if(currentStep.value == 2  &&  !hasError){
+    console.log(loan.value)
+   axios.post('loans', loan.value,{
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then(response => {
      console.log(response);
    }).catch(error => {
      console.log(error);
    })
   }
-  // elseif (currentStep.value == 1 && objValidator.value.validateFields({...loan.value.loan_information, ...loan.value.personal_information})){
-
-  // }
-
+  
   currentStep.value++;
 
 };

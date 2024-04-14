@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LoanInformationStoreRequest;
 use App\Http\Requests\LoanInformationUpdateRequest;
 use App\Models\LoanInformation;
-use App\Models\loanStatus;
+use App\Models\LoanStatus;
 use App\Models\PersonalInformation;
 use App\Models\Repayment;
 use App\Models\User;
 use App\Services\LoanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class LoanController extends Controller
@@ -32,7 +33,7 @@ class LoanController extends Controller
             if ($user->hasVerifiedEmail()) {
                 // Retrieve loans with related data using the service
                 $loans = $this->loanService->getLoansWithRelatedData($request->all());
-                $statuses = loanStatus::all();
+                $statuses = LoanStatus::all();
 
                 return Inertia::render('Dashboard', [
                     'loans' => $loans,
@@ -89,7 +90,7 @@ class LoanController extends Controller
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 1);
 
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('InitialApplication', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -101,7 +102,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 2);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('InformationVerification', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -113,7 +114,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(),3);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('ForInterview', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -124,7 +125,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 4);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('ForApproval', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -136,7 +137,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 5);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('Approved', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -148,7 +149,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 6);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('Declined', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -160,7 +161,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 7);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('ForReleasing', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -172,7 +173,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 8);
-        $statuses= loanStatus::all();
+        $statuses= LoanStatus::all();
         return Inertia::render('Released', [
             'loans' => $loans,
             'statuses' => $statuses
@@ -203,6 +204,7 @@ class LoanController extends Controller
 
         return response()->json(['loan' => $loan], 201);
     }
+
     public function update(LoanInformationUpdateRequest $request, $id)
     {
         $loanInformation = LoanInformation::with(['personalInformation', 'personalInformation.coborrowers'])->findOrFail($id);
@@ -215,6 +217,33 @@ class LoanController extends Controller
         $updatedData = $this->loanService->updateLoanWithRelatedData($request->all(), $id);
     
         return response()->json(['Success' => $updatedData], 200);
+    }
+
+    public function delete($id)
+    {
+         // Find the loan information record
+         $loanInformation = LoanInformation::findOrFail($id);
+
+         // Retrieve the associated personal information
+         $personalInformation = $loanInformation->personalInformation;
+         
+         // Retrieve the associated requirements
+         $requirements = $personalInformation->requirements;
+      
+         // Iterate over each requirement
+        
+             // Delete the corresponding file from storage
+            Storage::deleteDirectory('public/images/personal_information/'.$requirements->id.'requirements');
+             // Delete the requirement record
+        $requirements->delete();
+       
+        $personalInformation->delete();
+         // Now delete the loan information record
+        $loanInformation->delete();
+ 
+         // Return a response indicating success
+         return response()->json(['message' => 'Loan information deleted successfully'], 200);
+     
     }
 
 }

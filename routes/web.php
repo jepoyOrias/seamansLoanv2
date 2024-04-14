@@ -6,6 +6,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepaymentController;
+use App\Http\Controllers\RequirementsController;
 use App\Models\LoanInformation;
 use App\Models\Repayment;
 use Illuminate\Foundation\Application;
@@ -71,6 +72,10 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     Route::post('/download-application',[PdfController::class, 'generatePDF'])->name('downloadApplication');
     Route::post('/admin/register', [CreateAdminController::class, 'store'])->name('admin.register');
     Route::post('/approved-receipt',[RepaymentController::class, 'approveReceipt'])->name('approveReceipt');
+    Route::get('/loan/{personal_information_id}/requirements/download', [RequirementsController::class, 'downloadUserRequirements'])
+    ->name('loan.requirements.download');
+    
+    Route::delete('/loans/{id}', [LoanController::class, 'delete']);
 });
 
 require __DIR__.'/auth.php';
