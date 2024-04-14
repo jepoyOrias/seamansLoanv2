@@ -53,8 +53,6 @@
     <p>We'll keep you updated on the progress. If any additional information is required, we'll reach out promptly.</p>
     <p>Thank you for choosing Seaman Loan Express.</p>
     <p>Best regards,</p>
-    <p>Ian Fhabi Lofranco</p>
-    <p>Loan Specialist</p>
     <p>Seaman Loan Express</p>
        
 </section>

@@ -184,7 +184,8 @@
                 <td style="width: 300px; padding-left: 50px;padding-right:10px;float:left" class="text-size14">
                     Purpose of Loan:
                     <div
-                        style="font-size:15px;color:black ;border-bottom: 1px solid;!important; float:right; width:40%;margin-right:40px; text-align:center" class="sanserif">
+                        style="font-size:10px;color:black ;border-bottom: 1px solid;!important; float:right; text-wrap:nowrap !important;
+                            width:40%;margin-right:40px; text-align:center" class="sanserif">
                         {{ $borrower['loan_purpose'] }}</div>
                 </td>
             </tr>
@@ -254,7 +255,7 @@
                         </div>
                         <div class="radio-group">
                             <input type="radio" id="married" name="civil_status" value="Married"
-                                {{ $borrower['personal_information']['civil_status'] == 'Married' ? 'checked' : '' }}>
+                                {{ $borrower['personal_information']['civil_status'] != 'Single' ? 'checked' : '' }}>
                             <label for="married">Married</label>
                         </div>
                     @endif
@@ -316,6 +317,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['present_address_length'] }}
                 </div>
             </td>
         </tr>
@@ -330,6 +332,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['provincial_address_length'] }}
                 </div>
             </td>
         </tr>
@@ -344,6 +347,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['permanent_address_length'] }},
                 </div>
             </td>
         </tr>
@@ -401,10 +405,10 @@
             </td>
             <td class="border  p-1  text-size12" colspan="11">
                 <div class="radio-group" style="float: left;margin-right:100px">
-                    TIN #: {{ $borrower['personal_information']['tin'] ?? null}}
+                    TIN #: {{ $borrower['personal_information']['TIN_NO'] ?? null}}
                 </div>
                 <div class="radio-group" style="float: left;margin-right:100px">
-                    SSS #:   {{ $borrower['personal_information']['sss'] ?? null }} 
+                    SSS #:   {{ $borrower['personal_information']['SSS_NO'] ?? null }} 
                 </div>
                 <div class="radio-group" style="float: left;margin-right:100px">
                     GSIS #:   {{ $borrower['personal_information']['gsis'] ?? null}}
@@ -594,7 +598,7 @@
                         </div>
                         <div class="radio-group">
                             <input type="radio" id="married" name="civil_status" value="Married"
-                                {{ $borrower['personal_information']['coborrowers'][0]['civil_status'] == 'Married' ? 'checked' : '' }}>
+                                {{ $borrower['personal_information']['coborrowers'][0]['civil_status'] != 'Single' ? 'checked' : '' }}>
                             <label for="married">Married</label>
                         </div>
                     @endif
@@ -656,6 +660,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['coborrowers'][0]['present_address_length'] }}
                 </div>
             </td>
         </tr>
@@ -671,6 +676,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['coborrowers'][0]['provincial_address_length'] }}
                 </div>
             </td>
         </tr>
@@ -685,6 +691,7 @@
                 <div style="float: left; width:100%;font-size:10px;">
                     LENGTH OF STAY
                     <br>
+                    {{ $borrower['personal_information']['coborrowers'][0]['permanent_address_length'] }},
                 </div>
             </td>
         </tr>
@@ -742,10 +749,10 @@
             </td>
             <td class="border  p-1  text-size12" colspan="11">
                 <div class="radio-group" style="float: left;margin-right:100px">
-                    TIN #: {{ $borrower['personal_information']['coborrowers'][0]['tin'] ?? null}}
+                    TIN #: {{ $borrower['personal_information']['coborrowers'][0]['TIN_NO'] ?? null}}
                 </div>
                 <div class="radio-group" style="float: left;margin-right:100px">
-                    SSS #:   {{ $borrower['personal_information']['coborrowers'][0]['sss'] ?? null }} 
+                    SSS #:   {{ $borrower['personal_information']['coborrowers'][0]['SSS_NO'] ?? null }} 
                 </div>
                 <div class="radio-group" style="float: left;margin-right:100px">
                     GSIS #:   {{ $borrower['personal_information']['coborrowers'][0]['gsis'] ?? null}}
@@ -874,16 +881,17 @@
          
     </td>
     </tr>
+    
     <tr style="width:100%;" style="border-bottom: none !important;">
         <td colspan="12"  style="padding: 10px; border: none !important"> 
             <div class="relative" style="min-height: 120px;">
                 <div class="absolute" style="position: absolute; top: 10px; left: 50px;">
-                    <p class="text-center text-size14">{{ \Carbon\Carbon::now()->format('m/d/y') }}</p>
+                <img src="{{ storage_path('app/public/' . $borrower['personal_information']['requirements']['signature']) }}" alt="Loan Purpose Image" width="150">
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
                 <div class="absolute" style="position: absolute; top: 10px; right: 50px;">
-                    <p class="text-center text-size14">{{ \Carbon\Carbon::now()->format('m/d/y') }}</p>
+                    
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Co-Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
@@ -956,12 +964,12 @@
         <td colspan="12"  style="padding: 10px; border: none !important"> 
             <div class="relative" style="min-height: 120px;">
                 <div class="absolute" style="position: absolute; top: 10px; left: 50px;">
-                    <p class="text-center text-size14">{{ \Carbon\Carbon::now()->format('m/d/y') }}</p>
+                <img src="{{ storage_path('app/public/' . $borrower['personal_information']['requirements']['signature']) }}" alt="Loan Purpose Image" width="150">
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
                 <div class="absolute" style="position: absolute; top: 10px; right: 50px;">
-                    <p class="text-center text-size14">{{ \Carbon\Carbon::now()->format('m/d/y') }}</p>
+                    
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Co-Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>

@@ -91,6 +91,7 @@ class LoanInformationStoreRequest extends FormRequest
             'requirements.valid_id_1' => 'nullable|image|max:5120',
             'requirements.valid_id_2' => 'nullable|image|max:5120',
             'requirements.marriage_contract' => 'nullable|image|max:5120',
+            'requirements.signature' => 'nullable|image|max:5120',
             'requirements.send_it_thru' => 'nullable|string|max:255',
         ];
     }

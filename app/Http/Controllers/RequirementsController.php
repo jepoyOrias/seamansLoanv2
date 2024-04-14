@@ -20,7 +20,7 @@ class RequirementsController extends Controller
         
                 // Loop through each requirement and add its image path to the array
                 foreach ($requirements->getAttributes() as $key => $value) {
-                    if (!empty($value) && in_array($key, ['contract', 'oec', 'passport', 'seamans_book', 'e_reg', 'sirb', 'bill', 'valid_id_1', 'valid_id_2', 'marriage_contract'])) {
+                    if (!empty($value) && in_array($key, ['contract', 'oec', 'passport', 'seamans_book', 'e_reg', 'sirb', 'bill', 'valid_id_1', 'valid_id_2', 'marriage_contract','signature'])) {
                         $imageFilePaths[] = storage_path('app/public/' . $value);
                     }
                 }

@@ -26,7 +26,8 @@ class PdfController extends Controller
                 'releasing',
                 'personalInformation.contactReferences',
                 'personalInformation.coborrowers',
-                'personalInformation.employerInformation'
+                'personalInformation.employerInformation',
+                'personalInformation.requirements'
             ])->findOrFail($id);
 
             $borrowerArray = $borrower->toArray();

@@ -54,8 +54,6 @@
     <p>If you have any questions or concerns before the interview, feel free to contact us at [Your Contact Information].</p>
     <p>Thank you for choosing Seaman Loan Express.</p>
     <p>Best regards,</p>
-    <p>Ian Fhabi Lofranco</p>
-    <p>Loan Specialist</p>
     <p>Seaman Loan Express</p>
 </section>
 

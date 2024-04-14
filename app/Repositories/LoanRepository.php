@@ -64,6 +64,7 @@ class LoanRepository
             $requirementsData = $data['requirements'];
             $requirementsData['personal_information_id'] = $personalInformation->id;
 
+
             $requirementsAttributes = [];
             foreach ($requirementsData as $requirementName => $requirementFile) {
                 if ($requirementFile instanceof \Illuminate\Http\UploadedFile) {

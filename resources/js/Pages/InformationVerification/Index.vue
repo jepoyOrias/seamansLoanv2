@@ -20,7 +20,7 @@
             </div>
           </div>
           <div class="flex gap-4">
-            <Button :onClick="() => sendEmailNotification('informationVerification', 3)"
+            <Button :onClick="() => sendEmailNotification('forInterview', 3)"
               :disabled="hasSelectedApplication" class="'py-2'">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"

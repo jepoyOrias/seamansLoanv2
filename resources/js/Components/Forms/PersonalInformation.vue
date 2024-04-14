@@ -97,8 +97,8 @@
         validator.hasError(key),
       'dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400':
         !validator.hasError(key),
-      'py-3 px-4 block w-full rounded-lg text-sm relative dark:text-white dark:bg-gray-800 bg-transparent': true,
-    }" :value="key" v-model="personalInformation[key]" @change="validator.removeError(key)">
+      'py-3 px-4 block w-full rounded-lg text-sm relative dark:text-white dark:bg-gray-800 ': true,
+    }"  v-model="personalInformation[key]" @change="validator.removeError(key)">
           <option disabled>Open this select menu</option>
           <option v-for="(option, index) in value.options" :key="index" :value="option.value">
             {{ option.label }}

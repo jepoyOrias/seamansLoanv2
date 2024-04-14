@@ -190,6 +190,12 @@ const civilStatus = [
   { label: 'Widow / Widower', value: 'Widow / Widower' }
 ];
 
+const addressOwnership = [
+  { label: 'Owned', value: 'Owned' },
+  { label: 'Owned/Mortgage', value: 'Owned/Mortgage' },
+  { label: 'Living w/ Relatives', value: 'Living w/ Relatives' },
+  { label: 'Renting', value: 'Renting' }
+];
 const loan = ref({
   personal_information: {
     lastname: '',
@@ -283,7 +289,7 @@ const loan = ref({
   },
   requirements: {
     contract: null,
-    seaman_book: null,
+    seamans_book: null,
     passport: null,
     e_reg: null,
     sirb: null,
@@ -292,7 +298,8 @@ const loan = ref({
     valid_id_2: null,
     marriage_contract: null,
     send_it_thru: null,
-    signature: null
+    signature: null,
+    oec: null
   }
 })
 
@@ -312,12 +319,12 @@ objValidator.value.fields = {
   gender: {required: true, inputType: 'radio', label: 'Gender', type:'personal_information', options: ['Male', 'Female', 'Others']},
   civil_status: {required: true, inputType: 'selectOption', label: 'Civil Status', type:'personal_information', options: civilStatus},
   present_address: {required: true, inputType: 'text', label: 'Present Address', type:'personal_information'},
-  address_ownership: {required: true, inputType: 'text', label: 'Address Ownership', type:'personal_information'},
+  address_ownership: {required: true, inputType: 'selectOption', label: 'Address Ownership', type:'personal_information',options: addressOwnership},
   present_address_length: {required: true,  numeric:true,inputType: 'text', label: 'Stay of length at Present Address (Years)', type:'personal_information'},
   permanent_address: {required: true, inputType: 'text', label: 'Permanent Address', type:'personal_information'},
-  permanent_address_length: {required: true, numeric:true,inputType: 'text', label: 'Stay of length at Permanent Address', type:'personal_information'},
+  permanent_address_length: {required: true, numeric:true,inputType: 'text', label: 'Stay of length at Permanent Address (Years)', type:'personal_information'},
   provincial_address: {required: true, inputType: 'text', label: 'Provincial Address', type:'personal_information'},
-  provincial_address_length: {required: true,numeric:true, inputType: 'text', label: 'Stay of length at Provincial Address', type:'personal_information'},
+  provincial_address_length: {required: true,numeric:true, inputType: 'text', label: 'Stay of length at Provincial Address (Years)', type:'personal_information'},
   phone_number: {required: true, numeric:true, inputType: 'text', label: 'Phone Number', type:'personal_information'},
   email: {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g , inputType: 'text', label: 'Email Address', type:'personal_information'},
   facebook_account_name: {required: true, inputType: 'text', label: 'Facebook account name / Facebook Link', type:'personal_information'},
@@ -341,14 +348,15 @@ objValidator.value.fields = {
   
 
   contract: { required: true, inputType: 'file', label: 'Contract', type: 'requirements' },
-  seaman_book: { required: true, inputType: 'file', label: "Seaman's Book", type: 'requirements' },
+  seamans_book: { required: true, inputType: 'file', label: "Seaman's Book", type: 'requirements' },
   passport: { required: true, inputType: 'file', label: "Passport", type: 'requirements' },
   e_reg: { required: true, inputType: 'file', label: 'E-Registration', type: 'requirements' },
-  sirb: { required: true, inputType: 'file', label: 'SIRB', type: 'requirements' },
+  sirb: { required: true, inputType: 'file', label: 'SIRB LAST STAMP', type: 'requirements' },
   bill: { required: true, inputType: 'file', label: 'bill', type: 'requirements' },
   valid_id_1: { required: true, inputType: 'file', label: 'Government Valid ID 1', type: 'requirements' },
   valid_id_2: { required: true, inputType: 'file', label: 'Government Valid ID 2', type: 'requirements' },
   marriage_contract: { required: true, inputType: 'file', label: 'Marriage Contract', type: 'requirements' },
+  oec: { required: true, inputType: 'file', label: 'OEC', type: 'requirements' },
   signature: { required: true, inputType: 'file', label: 'Signature', type: 'requirements' },
 }
 
