@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\CreateAdminController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdfController;
@@ -44,6 +45,7 @@ Route::get('/privacy-policy', function (){
     ['canLogin' => true,]
 );
 })->name('privacy.policy');
+Route::post('/contact-us', [ContactUsController::class, 'sendEmail']);
 
 Route::get('/dashboard', [LoanController::class, 'index'])->middleware(['auth'])->name('dashboard');
 

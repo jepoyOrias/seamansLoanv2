@@ -54,12 +54,13 @@
 
                 <BankAccounts v-model:bankAccounts="loan.releasings" v-model:objValidator="objValidator">
                 </BankAccounts>
-                <!-- Other fields for step 1 -->
-              </div>
-              <div v-else-if="currentStep === 1">
+
                 <IncomeInformation v-model:incomeInformation="loan.employer_information"
                   v-model:objValidator="objValidator">
                 </IncomeInformation>
+                <!-- Other fields for step 1 -->
+              </div>
+              <div v-else-if="currentStep === 1">
                 <CoBorrowerInformation v-model:coborrowersInformation="loan.coborrowers"
                   v-model:objValidator="objValidator">
                 </CoBorrowerInformation>
@@ -378,7 +379,7 @@ const step2Validator = useVuelidate(rulesForCharacterReferences, { loan });
 
 const nextStep = () => {
   let hasError = false;
-  if (currentStep.value == 0 && objValidator.value.validateFields({ ...loan.value.loan_information, ...loan.value.personal_information, ...loan.value.releasings })) {
+  if (currentStep.value == 0 && objValidator.value.validateFields({ ...loan.value.loan_information, ...loan.value.personal_information, ...loan.value.releasings,...loan.value.employer_information })) {
     console.log(objValidator.value.getFieldsKeyWithError());
     hasError = true;
     return false;
@@ -386,7 +387,7 @@ const nextStep = () => {
   else if (currentStep.value == 1) {
     step2Validator.value.$touch();
 
-    if (objValidator.value.validateFields({ ...loan.value.employer_information, ...loan.value.coborrowers[0] }) || step2Validator.value.$error) {
+    if (objValidator.value.validateFields({ ...loan.value.coborrowers[0] }) || step2Validator.value.$error) {
       hasError = true;
       return false;
     }
@@ -406,7 +407,15 @@ const nextStep = () => {
       }).then(response => {
      console.log(response);
    }).catch(error => {
-     console.log(error);
+            objToast.value = {
+                title: 'Error',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle shrink-0 text-green-300"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+                message: error.response.data.message,
+                cancelButton: 'Close',
+                showCancelButton:false,
+                onClickConfirm: (e) => { objToast.value = null },
+                confirmButton: 'Ok'
+            }
    })
   }
   

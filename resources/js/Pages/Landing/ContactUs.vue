@@ -1,4 +1,5 @@
 <template>
+  <Toast :toast="objToast" />
     <!-- ====== Contact Section Start -->
     <section class="relative z-10 overflow-hidden bg-slate-100 dark:bg-slate-900 py-20 lg:py-[120px]" id="contact_us_section">
       <div class="container mx-auto">
@@ -11,9 +12,7 @@
                 GET IN TOUCH WITH US
               </h2>
               <p class="text-base leading-relaxed text-body-color  dark:text-slate-50 mb-9">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor incididunt
-                ut labore et dolore magna aliqua. Ut enim adiqua minim veniam quis nostrud
-                exercitation ullamco
+                We value your feedback and inquiries. Feel free to reach out to us using the contact details provided below or by filling out the contact form. Our team is dedicated to responding promptly and assisting you with any questions or concerns you may have.
               </p>
               <div class="mb-8 flex w-full max-w-[370px]">
                 <div
@@ -36,7 +35,7 @@
                 <div class="w-full">
                   <h4 class="mb-1 text-xl font-bold text-dark dark:text-white">Our Location</h4>
                   <p class="text-base text-body-color  dark:text-slate-50">
-                    99 S.t Jomblo Park Pekanbaru 28292. Indonesia
+                    638 TM KALAW ROOM 203 2nd floor San Luis Terraces Building Philippines
                   </p>
                 </div>
               </div>
@@ -75,7 +74,7 @@
                 </div>
                 <div class="w-full">
                   <h4 class="mb-1 text-xl font-bold text-dark dark:text-white">Phone Number</h4>
-                  <p class="text-base text-body-color  dark:text-slate-50">(+62)81 414 257 9980</p>
+                  <p class="text-base text-body-color  dark:text-slate-50">(+63) 9567508036</p>
                 </div>
               </div>
               <div class="mb-8 flex w-full max-w-[370px]">
@@ -98,7 +97,7 @@
                 </div>
                 <div class="w-full">
                   <h4 class="mb-1 text-xl font-bold text-dark dark:text-white">Email Address</h4>
-                  <p class="text-base text-body-color  dark:text-slate-50">info@yourdomain.com</p>
+                  <p class="text-base text-body-color  dark:text-slate-50">info@seamanloanexpress.com</p>
                 </div>
               </div>
             </div>
@@ -109,37 +108,78 @@
                 <div class="mb-6">
                   <input
                     type="text"
+                    v-model="formData.name"
                     placeholder="Your Name"
-                    class="border-stroke dark:border-dark-3  dark:text-slate-50 dark:bg-slate-900 text-body-color focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none"
+                    @input="objValidator.removeError('name')"
+                    :class="{'focus:border-red-500 focus:ring-red-500 border-red-500': objValidator.hasError('name')}"
+                    class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" 
                   />
+                  <div v-if="objValidator.hasError('name')">
+                  <p class="text-sm text-red-600 mt-2 dark:text-white" :id="`hs-validation-validator-error-helper`">
+                     {{ objValidator.getError('name') }}
+                  </p>
+                </div>
                 </div>
                 <div class="mb-6">
                   <input
                     type="email"
                     placeholder="Your Email"
-                    class="border-stroke dark:border-dark-3  dark:text-slate-50 dark:bg-slate-900 text-body-color focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none"
+                    v-model="formData.email"
+                    @input="objValidator.removeError('email')"
+                    :class="{'focus:border-red-500 focus:ring-red-500 border-red-500': objValidator.hasError('email')}"
+                    class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" 
                   />
+                  <div v-if="objValidator.hasError('email')">
+                  <p class="text-sm text-red-600 mt-2 dark:text-white" :id="`hs-validation-validator-error-helper`">
+                     {{ objValidator.getError('email') }}
+                  </p>
+                </div>
                 </div>
                 <div class="mb-6">
                   <input
                     type="text"
                     placeholder="Your Phone"
-                    class="border-stroke dark:border-dark-3  dark:text-slate-50 dark:bg-slate-900 text-body-color focus:border-primary w-full rounded border py-3 px-[14px] text-base outline-none"
+                    v-model="formData.phone"
+                    @input="objValidator.removeError('phone')"
+                    :class="{'focus:border-red-500 focus:ring-red-500 border-red-500': objValidator.hasError('phone')}"
+                    class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" 
                   />
+                  <div v-if="objValidator.hasError('phone')">
+                  <p class="text-sm text-red-600 mt-2 dark:text-white" :id="`hs-validation-validator-error-helper`">
+                     {{ objValidator.getError('phone') }}
+                  </p>
+                </div>
                 </div>
                 <div class="mb-6">
                   <textarea
                     rows="6"
                     placeholder="Your Message"
-                    class="border-stroke dark:border-dark-3  dark:text-slate-50 dark:bg-slate-900 text-body-color focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none"
+                    v-model="formData.message"
+                    @input="objValidator.removeError('message')"
+                    :class="{'focus:border-red-500 focus:ring-red-500 border-red-500': objValidator.hasError('message')}"
+                    class="py-3 px-4 block w-full rounded-lg text-sm dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400" 
                   ></textarea>
+                  <div v-if="objValidator.hasError('message')">
+                  <p class="text-sm text-red-600 mt-2 dark:text-white" :id="`hs-validation-validator-error-helper`">
+                     {{ objValidator.getError('message') }}
+                  </p>
                 </div>
+                </div>
+               
                 <div>
                   <button
-                    type="submit"
+                    type="button"
+                    @click="sendMessage()"
+                    :disabled="sending"
                     class="w-full p-3 text-white dark:text-blue-900 transition border rounded border-primary dark:bg-yellow-500 bg-blue-900 hover:bg-opacity-90"
                   >
+                  <div v-if="sending" class="animate-spin inline-block size-6 border-[3px] border-current border-t-transparent text-white dark:text-blue-900 rounded-full " role="status" aria-label="loading">
+                        <span class="sr-only">Loading...</span>
+                  </div>
+                  <span v-else>
                     Send Message
+                  </span>
+                   
                   </button>
                 </div>
               </form>
@@ -962,6 +1002,77 @@
   
 
 <script setup>
+import axios from 'axios';
+import { objFormValidator } from '@/utility/validator';
+import { ref } from 'vue';
+import Toast from '@/Components/Toast/Index.vue';
+import { router } from '@inertiajs/vue3';
+
+const objToast = ref(null);
+
+const objValidator = ref({ ...objFormValidator });
+
+objValidator.value.default = {
+  required: (_, obj) => `${obj.label || _} is required`,
+  numeric: (_, obj) => `${obj.label} was not in correct format`,
+  minnumber: (field, obj) => `${obj.label} was below the minimum number ${obj.minnumber}`,
+  maxnumber: (field, obj) => `${obj.label} was exceeded the maximum number ${obj.maxnumber}`,
+  maxlength: (field, obj) => `${obj.label} was exceeded the maxlength ${obj.maxlength}`,
+  pattern: (field, obj) => `${obj.label} was not a valid email pattern`
+}
+
+objValidator.value.fields = {
+  name: {required: true},
+  email: {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g , inputType: 'text', label: 'Email Address', type:'personal_information'},
+  phone: {required: true, numeric: true},
+  message :{required: true}
+}
+
+const sending = ref(false);
+
+const formData = ref({
+  name: '',
+  email: '',
+  phone: '',
+  message: ''
+});
+
+const sendMessage = ()=>{
+  sending.value = true;
+  if(objValidator.value.validateFields(formData.value)){
+    return false;
+  }else{
+    axios.post('/contact-us', formData.value)
+    .then(response => {
+            formData.value = {}
+             objToast.value = {
+                title: 'Success',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle shrink-0 text-green-300"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+                message: response.data.message,
+             
+            }
+      // Handle success response
+    })
+    .catch(error => {
+      console.log(error)
+      objToast.value = {
+                title: 'Error',
+                icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle shrink-0 text-green-300"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+                message: error.response.data.message,
+                cancelButton: 'Close',
+                showCancelButton:false,
+                onClickConfirm: (e) => { objToast.value = null },
+                confirmButton: 'Ok'
+            }
+  }).finally(()=>{
+    sending.value = false;
+  });
+}
+
+
+}
+ 
+
 
 </script>
 

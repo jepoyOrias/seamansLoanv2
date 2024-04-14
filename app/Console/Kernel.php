@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\ContactUs;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,7 +13,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            ContactUs::query()->update(['message_count' => 0]);
+        })->timezone('Asia/Singapore')->dailyAt('12:00');
     }
 
     /**
