@@ -43,13 +43,14 @@
 <body>
 
 <section class="hero">
-    <h1>Welcome to Our Website</h1>
-    <img src="your-logo.png" alt="Logo">
+    <h1>Seaman Loan Express</h1>
+    <img src="{{ asset('images/logo.png') }}" alt="Logo">
 </section>
 
 <section class="content">
     <p>Dear <strong>{{ $borrower->personalInformation->lastname }}, {{ $borrower->personalInformation->firstname }}</strong>,</p>
     <p>Thank you for providing the necessary documents for your loan application. Our team is currently verifying the information provided to ensure a smooth processing of your application.</p>
+    <p><strong>You can also use this reference number to check your application status:</strong> {{ $borrower->uuid }}</p>
     <p>We'll keep you updated on the progress. If any additional information is required, we'll reach out promptly.</p>
     <p>Thank you for choosing Seaman Loan Express.</p>
     <p>Best regards,</p>

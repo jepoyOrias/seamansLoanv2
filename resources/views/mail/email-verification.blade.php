@@ -64,7 +64,7 @@
 <body>
     <section class="hero">
         <h1>Welcome to Seaman Loan Express!</h1>
-        <img src="{{ asset('.././../../public/images/logo.png') }}" alt="Logo">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo">
     </section>
     <section class="content">
         <p>Hello {{ $admin->name }},</p>

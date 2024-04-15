@@ -31,7 +31,14 @@ class RequirementsVerificationMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Verification of Loan Requirements',
+            subject:  $this->typeOfEmail === 'informationVerification' ? 'Information Verification' : 
+                ($this->typeOfEmail === 'forInterview' ? 'Interview Information' :
+                ($this->typeOfEmail === 'forApproval' ? 'Loan Approval' :
+                ($this->typeOfEmail === 'approve' ? 'Loan Approved' :
+                ($this->typeOfEmail === 'decline' ? 'Loan Declined' :
+                ($this->typeOfEmail === 'forReleasing' ? 'Loan Releasing' :
+                // Add more conditions as needed
+                ''))))),
         );
     }
 

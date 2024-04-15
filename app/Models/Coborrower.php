@@ -28,7 +28,6 @@ class Coborrower extends Model
         'nationality',
         'TIN_NO',
         'SSS_NO',
-        'PAGIBIG_NO',
         'phone_number',
         'facebook_account_name',
         'education',

@@ -33,7 +33,6 @@ return new class extends Migration
             $table->string('facebook_account_name');
             $table->string('TIN_NO');
             $table->string('SSS_NO');
-            $table->string('PAGIBIG_NO');
             $table->string('education');
             $table->string('source_of_fund');
             $table->unsignedBigInteger('personal_information_id');

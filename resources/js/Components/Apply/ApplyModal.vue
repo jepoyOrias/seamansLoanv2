@@ -1,5 +1,6 @@
 <template>
-  <Modal v-model:isOpen="ModalisOpen">
+  <Toast :toast="objToast"/> 
+   <Modal v-model:isOpen="ModalisOpen">
     <div
       class="modal-body max-h-[80vh] hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0  ease-out transition-all lg:max-w-lg w-full  h-100  m-3 sm:mx-auto lg:min-w-[800px]">
       <div class="bg-white border  border-gray-200 rounded-xl shadow-sm dark:bg-gray-800 dark:border-gray-700">
@@ -92,7 +93,7 @@
 
 <script setup>
 import Modal from '@/Components/Modal/Index.vue';
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed, watchEffect, watch } from "vue";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
 import PersonalInformation from "@/Components/Forms/PersonalInformation.vue";
 import IncomeInformation from "@/Components/Forms/IncomeInformation.vue";
@@ -102,6 +103,7 @@ import LoanInformation from "@/Components/Forms/LoanInformation.vue";
 import BankAccounts from "@/Components/Forms/BankAccounts.vue";
 import Requirements from "@/Components/Forms/Requirements.vue";
 import { objFormValidator } from '@/utility/validator';
+import Toast from '@/Components/Toast/Index.vue';
 
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers, numeric, maxValue, minValue } from '@vuelidate/validators'
@@ -219,7 +221,6 @@ const loan = ref({
     nationality: 'Filipino',
     TIN_NO: '',
     SSS_NO: '',
-    PAGIBIG_NO: '',
     education: '',
     source_of_fund: '',
 
@@ -258,26 +259,28 @@ const loan = ref({
   coborrowers: [
     {
       lastname: '',
-      firstname: '',
-      middlename: '',
-      suffix: '',
-      birth_date: '',
-      place_of_birth: '',
-      gender: '',
-      civil_status: '',
-      present_address: '',
-      address_ownership: '',
-      present_address_length: '',
-      permanent_address: '',
-      permanent_address_length: '',
-      provincial_address: '',
-      provincial_address_length: '',
-      phone_number: '',
-      email: '',
-      facebook_account_name: '',
-      nationality: 'Filipino',
-      education: '',
-      source_of_fund: '',
+    firstname: '',
+    middlename: '',
+    suffix: '',
+    birth_date: '',
+    place_of_birth: '',
+    gender: '',
+    civil_status: '',
+    present_address: '',
+    address_ownership: '',
+    present_address_length: '',
+    permanent_address: '',
+    permanent_address_length: '',
+    provincial_address: '',
+    provincial_address_length: '',
+    phone_number: '',
+    email: '',
+    facebook_account_name: '',
+    nationality: 'Filipino',
+    TIN_NO: '',
+    SSS_NO: '',
+    education: '',
+    source_of_fund: '',
     },
   ],
   releasings: {
@@ -303,7 +306,11 @@ const loan = ref({
   }
 })
 
-
+watch(()=>loan.value.personal_information.civil_status, (newValue)=>{
+    if(newValue === 'Single'){
+      objValidator.value.fields.marriage_contract.label = 'Birth Certificate'
+    } 
+});
 
 objValidator.value.fields = {
   loan_purpose: { required: true, inputType: 'selectOption', label: 'Loan Purpose', type: 'loan_information', options: loan_purposes },
@@ -331,7 +338,6 @@ objValidator.value.fields = {
   nationality: {required: true, inputType: 'text', label: 'Nationality', type:'personal_information'},
   TIN_NO: {required: true, inputType: 'text', label: 'Tin number', type:'personal_information'},
   SSS_NO: {required: true, inputType: 'text', label: 'SSS number', type:'personal_information'},
-  PAGIBIG_NO: {required: true, inputType: 'text', label: 'Pag-ibig Number', type:'personal_information'},
   education: {required: true, inputType: 'radio', label: 'Highest Educational Attainment', type:'personal_information' , options: ['High School', 'College Graduate', 'Post Graduate' , 'Under Graduate']},
   source_of_fund: {required: true, inputType: 'radio', label: 'Source of Fund', type:'personal_information',options: ['Salary/Profession', 'Business', 'Remittance']},
 
@@ -365,6 +371,8 @@ objValidator.value.fields = {
 
 const currentStep = ref(0);
 const steps = [1, 2, 3];
+
+const objToast = ref(null);
 
 const rulesForCharacterReferences = computed(() => {
   return {
@@ -413,7 +421,12 @@ const nextStep = () => {
           'Content-Type': 'multipart/form-data'
         }
       }).then(response => {
-     console.log(response);
+      handleCloseClick();
+      objToast.value = {
+        title: 'Success',
+        icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-circle shrink-0 text-green-300"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>',
+        message: 'We sent you a reference number. Please check your email.'
+      }
    }).catch(error => {
             objToast.value = {
                 title: 'Error',
@@ -425,9 +438,11 @@ const nextStep = () => {
                 confirmButton: 'Ok'
             }
    })
+  }else{
+    currentStep.value++;
   }
   
-  currentStep.value++;
+
 
 };
 
@@ -442,6 +457,7 @@ const prevStep = () => {
 const handleCloseClick = () => {
   objValidator.value.clearErrors();
   step2Validator.value.$reset();
+  currentStep.value = 0;
   emit('onCloseModal', true);
   
 

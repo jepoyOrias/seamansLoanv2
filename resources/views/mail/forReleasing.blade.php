@@ -43,8 +43,8 @@
 <body>
 
 <section class="hero">
-    <h1>Congratulations!</h1>
-    <img src="your-logo.png" alt="Logo">
+    <h1>Seaman Loan Express</h1>
+    <img src="{{ asset('images/logo.png') }}" alt="Logo">
 </section>
 
 <section class="content">

@@ -125,7 +125,7 @@
                         {{ \Carbon\Carbon::now()->format('m/d/y') }}
                     </div>
                 </td>
-                <td> <img src="{{ storage_path('app/public/images/pdfLogo.jpg') }}" alt="" width="200"></td>
+                <td> <img src="{{ public_path('images/pdfLogo.jpg') }}" alt="" width="200"></td>
             </tr>
         </tbody>
 

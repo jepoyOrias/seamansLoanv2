@@ -51,8 +51,8 @@
 <body>
 
 <section class="hero">
-    <h1>Welcome to Our Platform!</h1>
-    <img src="{{ asset('path-to-your-logo.png') }}" alt="Logo">
+    <h1>Seaman Loan Express</h1>
+    <img src="{{ asset('images/logo.png') }}" alt="Logo">
 </section>
 
 <section class="content">

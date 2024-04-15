@@ -28,7 +28,6 @@ class PersonalInformation extends Model
         'provincial_address_length',
         'TIN_NO',
         'SSS_NO',
-        'PAGIBIG_NO',
         'nationality',
         'phone_number',
         'facebook_account_name',
