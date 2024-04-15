@@ -111,7 +111,7 @@ import axios from 'axios';
 
 const ModalisOpen = defineModel('isApplyNowModal');
 const emit = defineEmits(['onCloseModal']);
-
+const objToast = ref(null);
 const objValidator = ref({ ...objFormValidator });
 
 objValidator.value.default = {
@@ -312,6 +312,7 @@ watch(()=>loan.value.personal_information.civil_status, (newValue)=>{
     } 
 });
 
+
 objValidator.value.fields = {
   loan_purpose: { required: true, inputType: 'selectOption', label: 'Loan Purpose', type: 'loan_information', options: loan_purposes },
   amount: {required: true, numeric:true,minnumber: 30000, maxnumber:1000000, inputType: 'text', label: 'Amount', type:'loan_information'},
@@ -372,7 +373,7 @@ objValidator.value.fields = {
 const currentStep = ref(0);
 const steps = [1, 2, 3];
 
-const objToast = ref(null);
+
 
 const rulesForCharacterReferences = computed(() => {
   return {
@@ -392,6 +393,7 @@ const rulesForCharacterReferences = computed(() => {
 });
 
 const step2Validator = useVuelidate(rulesForCharacterReferences, { loan });
+
 
 const nextStep = () => {
   let hasError = false;
