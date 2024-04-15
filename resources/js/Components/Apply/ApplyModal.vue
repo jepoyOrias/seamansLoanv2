@@ -375,6 +375,7 @@ const currentStep = ref(0);
 const steps = [1, 2, 3, 4];
 
 
+const objToast = ref(null);
 
 const rulesForCharacterReferences = computed(() => {
   return {
