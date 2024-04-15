@@ -49,7 +49,7 @@ watchEffect(()=>{
 
 <template>
 <div v-if="isModalOpen" class="transition duration fixed inset-0 bg-gray-900 bg-opacity-50 dark:bg-opacity-80 hs-overlay-backdrop size-full top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto">
-  <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto my-auto">
+  <div class="absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] ease-out transition-all sm:max-w-lg sm:w-full m-3 mx-auto my-auto w-full">
     <div class="relative flex flex-col bg-white border shadow-sm rounded-xl overflow-hidden dark:bg-gray-800 dark:border-gray-700 pointer-events-auto">
       <div class="absolute top-5 end-2">
         <button type="button" class="flex justify-center items-center size-7 text-sm font-semibold rounded-lg border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:border-transparent dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" 

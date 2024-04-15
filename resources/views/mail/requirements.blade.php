@@ -49,7 +49,7 @@
 
 <section class="content">
     <p>Dear <strong>{{ $borrower->personalInformation->lastname }}, {{ $borrower->personalInformation->firstname }}</strong>,</p>
-    <p>Thank you for submitting your loan application to [Your Company Name]. We appreciate your interest in our services.</p>
+    <p>Thank you for submitting your loan application to Seaman Loan Express. We appreciate your interest in our services.</p>
     <p>We understand that tracking the progress of your application is important to you. Therefore, we are pleased to provide you with a unique Reference ID: <strong>{{ $borrower->uuid }}</strong>. This Reference ID will serve as your identifier throughout the application process.</p>
 
     <p>Rest assured that our team is diligently reviewing your application. We strive to provide you with a decision as promptly as possible.</p>

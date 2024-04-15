@@ -49,13 +49,23 @@
 
 <section class="content">
     <p>Dear <strong>{{ $borrower->personalInformation->lastname }}, {{ $borrower->personalInformation->firstname }}</strong>,</p>
-    <p>We are thrilled to inform you that your loan application has been approved! 🎉🥳</p>
-    <p>You can expect the funds to be disbursed to your account within the next few business days.</p>
-    <p>If you have any questions or need further assistance, please feel free to contact us at [Your Contact Information].</p>
+    <p>We are thrilled to inform you that your loan application has been ready for release! 🎉🥳</p>
+    <p>You can expect the funds to be disbursed to your account within the day.</p>
+    <p>If you have any questions or concerns before the interview, please don't hesitate to reach out to us via our official Facebook page: Seaman Loan Express. We're here to assist you every step of the way.</p>
     <p>Thank you for choosing Seaman Loan Express.</p>
     <p>Best regards,</p>
     <p>Seaman Loan Express</p>
 </section>
+
+
+
+
+
+
+
+
+
+
 
 </body>
 </html>

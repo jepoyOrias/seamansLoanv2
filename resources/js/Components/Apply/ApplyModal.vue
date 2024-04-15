@@ -34,7 +34,7 @@
                           'w-8 h-8 border border-blue-900 dark:border-yellow-500 !dark:border-slate-100 rounded-full flex justify-center items-center mr-3 text-sm dark:text-yellow-500 lg:w-10 lg:h-10': currentStep > index
                         }">{{ index + 1 }}</span>
                   <h4 class="text-blue-900   dark:text-yellow-500">
-                    {{ index == 0 ? "Borrower's Informations" : index == 1 ? "Co-Borrower's Information" : ' Submit Requirements'}}
+                {{ index == 0 ? "Agreement" : index == 1 ? "Borrower's Informations" : index == 2 ? "Co-Borrower's Information" : ' Submit Requirements'}}
                   </h4>
                 </div>
               </li>
@@ -47,6 +47,9 @@
             <!-- Form Content -->
             <div class="p-8">
               <div v-if="currentStep === 0">
+                    <Agreement> </Agreement>
+              </div>
+              <div v-if="currentStep === 1">
                 <LoanInformation v-model:loanInformation="loan.loan_information" v-model:objValidator="objValidator">
                 </LoanInformation>
 
@@ -61,7 +64,7 @@
                 </IncomeInformation>
                 <!-- Other fields for step 1 -->
               </div>
-              <div v-else-if="currentStep === 1">
+              <div v-else-if="currentStep === 2">
                 <CoBorrowerInformation v-model:coborrowersInformation="loan.coborrowers"
                   v-model:objValidator="objValidator">
                 </CoBorrowerInformation>
@@ -69,7 +72,7 @@
                   v-model:validator="step2Validator"></CharacterReferences>
               </div>
               <!-- Add more steps as needed -->
-              <div v-else-if="currentStep === 2">
+              <div v-else-if="currentStep === 3">
                 <Requirements v-model:requirements="loan.requirements"  v-model:objValidator="objValidator">
                 </Requirements>
               </div>
@@ -80,7 +83,7 @@
               <button @click="prevStep" :disabled="currentStep === 0"
                 class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md">Previous</button>
               <button @click="nextStep"
-                class="px-4 py-2 bg-blue-500 text-white rounded-md">Next</button>
+                class="px-4 py-2 bg-blue-500 text-white rounded-md">{{ currentStep === 0 ? 'I Agree!':currentStep === 3 ? 'Submit': 'Next' }}</button>
 
 
             </div>
@@ -104,6 +107,7 @@ import BankAccounts from "@/Components/Forms/BankAccounts.vue";
 import Requirements from "@/Components/Forms/Requirements.vue";
 import { objFormValidator } from '@/utility/validator';
 import Toast from '@/Components/Toast/Index.vue';
+import Agreement from '../Forms/Agreement.vue';
 
 import { useVuelidate } from '@vuelidate/core'
 import { required, email, helpers, numeric, maxValue, minValue } from '@vuelidate/validators'
@@ -111,7 +115,7 @@ import axios from 'axios';
 
 const ModalisOpen = defineModel('isApplyNowModal');
 const emit = defineEmits(['onCloseModal']);
-
+const objToast = ref(null);
 const objValidator = ref({ ...objFormValidator });
 
 objValidator.value.default = {
@@ -127,8 +131,6 @@ objValidator.value.default = {
 
 
 const term_months = [
-  { label: '1 month', value: 1 },
-  { label: '2 months', value: 2 },
   { label: '3 months', value: 3 },
   { label: '4 months', value: 4 },
   { label: '5 months', value: 5 },
@@ -188,8 +190,7 @@ const loan_purposes = [
 const civilStatus = [
   { label: 'Single', value: 'Single' },
   { label: 'Married', value: 'Married' },
-  { label: 'Separated', value: 'Separated' },
-  { label: 'Widow / Widower', value: 'Widow / Widower' }
+
 ];
 
 const addressOwnership = [
@@ -312,6 +313,7 @@ watch(()=>loan.value.personal_information.civil_status, (newValue)=>{
     } 
 });
 
+
 objValidator.value.fields = {
   loan_purpose: { required: true, inputType: 'selectOption', label: 'Loan Purpose', type: 'loan_information', options: loan_purposes },
   amount: {required: true, numeric:true,minnumber: 30000, maxnumber:1000000, inputType: 'text', label: 'Amount', type:'loan_information'},
@@ -327,11 +329,11 @@ objValidator.value.fields = {
   civil_status: {required: true, inputType: 'selectOption', label: 'Civil Status', type:'personal_information', options: civilStatus},
   present_address: {required: true, inputType: 'text', label: 'Present Address', type:'personal_information'},
   address_ownership: {required: true, inputType: 'selectOption', label: 'Address Ownership', type:'personal_information',options: addressOwnership},
-  present_address_length: {required: true,  numeric:true,inputType: 'text', label: 'Stay of length at Present Address (Years)', type:'personal_information'},
+  present_address_length: {required: true,  numeric:true,inputType: 'text', label: 'Length of Stay (Years)', type:'personal_information'},
   permanent_address: {required: true, inputType: 'text', label: 'Permanent Address', type:'personal_information'},
-  permanent_address_length: {required: true, numeric:true,inputType: 'text', label: 'Stay of length at Permanent Address (Years)', type:'personal_information'},
+  permanent_address_length: {required: true, numeric:true,inputType: 'text', label: 'Length of Stay (Years)', type:'personal_information'},
   provincial_address: {required: true, inputType: 'text', label: 'Provincial Address', type:'personal_information'},
-  provincial_address_length: {required: true,numeric:true, inputType: 'text', label: 'Stay of length at Provincial Address (Years)', type:'personal_information'},
+  provincial_address_length: {required: true,numeric:true, inputType: 'text', label: 'Length of Stay (Years)', type:'personal_information'},
   phone_number: {required: true, numeric:true, inputType: 'text', label: 'Phone Number', type:'personal_information'},
   email: {required: true, pattern: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g , inputType: 'text', label: 'Email Address', type:'personal_information'},
   facebook_account_name: {required: true, inputType: 'text', label: 'Facebook account name / Facebook Link', type:'personal_information'},
@@ -370,9 +372,9 @@ objValidator.value.fields = {
 
 
 const currentStep = ref(0);
-const steps = [1, 2, 3];
+const steps = [1, 2, 3, 4];
 
-const objToast = ref(null);
+
 
 const rulesForCharacterReferences = computed(() => {
   return {
@@ -393,14 +395,15 @@ const rulesForCharacterReferences = computed(() => {
 
 const step2Validator = useVuelidate(rulesForCharacterReferences, { loan });
 
+
 const nextStep = () => {
   let hasError = false;
-  if (currentStep.value == 0 && objValidator.value.validateFields({ ...loan.value.loan_information, ...loan.value.personal_information, ...loan.value.releasings,...loan.value.employer_information })) {
+  if (currentStep.value == 1 && objValidator.value.validateFields({ ...loan.value.loan_information, ...loan.value.personal_information, ...loan.value.releasings,...loan.value.employer_information })) {
     console.log(objValidator.value.getFieldsKeyWithError());
     hasError = true;
     return false;
   }
-  else if (currentStep.value == 1) {
+  else if (currentStep.value == 2) {
     step2Validator.value.$touch();
 
     if (objValidator.value.validateFields({ ...loan.value.coborrowers[0] }) || step2Validator.value.$error) {
@@ -408,13 +411,13 @@ const nextStep = () => {
       return false;
     }
   }
-  else if(currentStep.value == 2 && objValidator.value.validateFields({ ...loan.value.requirements})){
+  else if(currentStep.value == 3 && objValidator.value.validateFields({ ...loan.value.requirements})){
     console.log(objValidator.value.getFieldsKeyWithError());
     hasError = true;
     return false;
   }
 
-  if(currentStep.value == 2  &&  !hasError){
+  if(currentStep.value == 3  &&  !hasError){
     console.log(loan.value)
    axios.post('loans', loan.value,{
         headers: {

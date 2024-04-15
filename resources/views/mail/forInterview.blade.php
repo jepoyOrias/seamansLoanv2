@@ -49,13 +49,17 @@
 
 <section class="content">
     <p>Dear <strong>{{ $borrower->personalInformation->lastname }}, {{ $borrower->personalInformation->firstname }}</strong>,</p>
-    <p>We are pleased to inform you that your loan application has been successfully reviewed, and we would like to invite you for an interview to discuss further details.</p>
-    <p>The interview will take place at our office on [Interview Date] at [Interview Time]. Please make sure to bring all the necessary documents mentioned in your application.</p>
-    <p>If you have any questions or concerns before the interview, feel free to contact us at [Your Contact Information].</p>
+    <p>We are pleased to inform you that your loan application has been successfully reviewed! Congratulations! We are impressed with your credentials and would like to proceed with further discussions regarding your application.</p>
+    <p>As the next step, we would like to invite you for an interview where we can delve deeper into the details of your application and address any additional questions or concerns you may have. Our team will be reaching out to you shortly to schedule a convenient time for the interview.</p>
+    <p>If you have any questions or concerns before the interview, please don't hesitate to reach out to us via our official Facebook page: Seaman Loan Express. We're here to assist you every step of the way.</p>
     <p>Thank you for choosing Seaman Loan Express.</p>
     <p>Best regards,</p>
     <p>Seaman Loan Express</p>
 </section>
+
+ 
+
+
 
 </body>
 </html>

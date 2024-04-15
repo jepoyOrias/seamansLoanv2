@@ -1,7 +1,7 @@
 <template>
     <!-- ========== HEADER ========== -->
-    <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm sticky top-10">
-        <nav class="mt-6 relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2 py-3 px-4 lg:flex md:items-center lg:justify-between lg:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700"
+    <header class="flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full text-sm sticky top-5">
+        <nav class="relative max-w-[85rem] w-full bg-white border border-gray-200 rounded-[36px] mx-2 py-3 px-4 lg:flex md:items-center lg:justify-between lg:py-0 md:px-6 lg:px-8 xl:mx-auto dark:bg-gray-800 dark:border-gray-700"
             aria-label="Global">
             <div class="flex items-center justify-between">
                 <Link
@@ -58,8 +58,11 @@
                         class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
                             @click.prevent="scrollToELements('how-to-apply')"    
                         >How to apply</Link>
-                    <a class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
-                        href="#">About us</a>
+                        <Link :href="'/?section=about-us'" preserve-scroll
+                        :class="{ 'text-blue-900 hover:text-blue-500 dark:text-white border-b-2 border-yellow-500': activeSection === 'about-us'}"
+                        class="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
+                            @click.prevent="scrollToELements('about-us')"    
+                        >About Us</Link>
 
                     <div
                         class="flex  lg:flex-row flex-col lg:items-center- gap-y-3 gap-x-2 font-medium text-gray-500 hover:text-blue-600 lg:border-s lg:border-gray-300 md:my-6 lg:ps-6 dark:border-gray-700 dark:text-gray-400 dark:hover:text-blue-500">
