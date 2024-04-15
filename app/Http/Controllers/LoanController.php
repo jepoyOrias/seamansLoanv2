@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoanInformationStoreRequest;
 use App\Http\Requests\LoanInformationUpdateRequest;
+use App\Mail\RequirementsVerificationMail;
 use App\Models\LoanInformation;
 use App\Models\LoanStatus;
 use App\Models\PersonalInformation;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Services\LoanService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -188,6 +190,7 @@ class LoanController extends Controller
     {
        $validatedData = $loanInformationRequest->validated();
        $createdLoan =  $this->loanService->createLoanWithRelatedData($validatedData);
+       Mail::to($createdLoan->personalInformation->email)->send(new RequirementsVerificationMail($createdLoan, 'forSendingReference'));
        return response()->json(['loan' => $createdLoan], 201);
     }
 

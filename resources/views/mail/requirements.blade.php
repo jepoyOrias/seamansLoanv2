@@ -49,10 +49,13 @@
 
 <section class="content">
     <p>Dear <strong>{{ $borrower->personalInformation->lastname }}, {{ $borrower->personalInformation->firstname }}</strong>,</p>
-    <p>Thank you for providing the necessary documents for your loan application. Our team is currently verifying the information provided to ensure a smooth processing of your application.</p>
-    <p><strong>You can also use this reference number to check your application status:</strong> {{ $borrower->uuid }}</p>
-    <p>We'll keep you updated on the progress. If any additional information is required, we'll reach out promptly.</p>
-    <p>Thank you for choosing Seaman Loan Express.</p>
+    <p>Thank you for submitting your loan application to [Your Company Name]. We appreciate your interest in our services.</p>
+    <p>We understand that tracking the progress of your application is important to you. Therefore, we are pleased to provide you with a unique Reference ID: <strong>{{ $borrower->uuid }}</strong>. This Reference ID will serve as your identifier throughout the application process.</p>
+
+    <p>Rest assured that our team is diligently reviewing your application. We strive to provide you with a decision as promptly as possible.</p>
+    <p>If you have any questions or concerns before the interview, please don't hesitate to reach out to us via our official Facebook page: Seaman Loan Express. We're here to assist you every step of the way.
+    </p>
+    <p>Thank you for choosing Seaman Loan Express for your financial needs. We look forward to potentially assisting you with your loan application.</p>
     <p>Best regards,</p>
     <p>Seaman Loan Express</p>
        

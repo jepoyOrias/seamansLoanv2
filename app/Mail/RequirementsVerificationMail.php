@@ -37,8 +37,9 @@ class RequirementsVerificationMail extends Mailable
                 ($this->typeOfEmail === 'approve' ? 'Loan Approved' :
                 ($this->typeOfEmail === 'decline' ? 'Loan Declined' :
                 ($this->typeOfEmail === 'forReleasing' ? 'Loan Releasing' :
+                ($this->typeOfEmail === 'forSendingReference' ? 'Reference ID' :
                 // Add more conditions as needed
-                ''))))),
+                '')))))),
         );
     }
 
@@ -54,8 +55,9 @@ class RequirementsVerificationMail extends Mailable
                 ($this->typeOfEmail === 'approve' ? 'mail.approve' :
                 ($this->typeOfEmail === 'decline' ? 'mail.decline' :
                 ($this->typeOfEmail === 'forReleasing' ? 'mail.forReleasing' :
+                ($this->typeOfEmail === 'forSendingReference' ? 'mail.referenceID' :
                 // Add more conditions as needed
-                ''))))),
+                '')))))),
         );
     }
 

@@ -34,7 +34,7 @@ class PdfController extends Controller
 
             // Generate and save the PDF for the current borrower
             $pdf = PDF::loadView('pdf.applicationFormPDF', ['borrower' => $borrowerArray])->setOption('fontDir', storage_path('/app/fonts'));
-            $pdf->setOption(['dpi' => 120]);
+            $pdf->setOption(['dpi' => 120 , 'isRemoteEnabled' => true]);
             $pdf->setPaper('Legal', 'portrait');
 
             // Save the PDF temporarily
