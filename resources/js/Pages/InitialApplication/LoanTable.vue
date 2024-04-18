@@ -110,10 +110,32 @@
                                             </button>
                                         </div>
                                         <div class="py-2 first:pt-0 last:pb-0">
+                                            <p class="text-start block py-2 px-3 text-xs font-medium uppercase dark:text-yellow-500 text-blue-900">
+                                                Edit
+                                            </p>
+                                            <button class="w-full flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                @click="editPersonalInfomation(loan)">
+                                                 Personal Information
+                                            </button>
                                             <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                                                 href="#">
-                                                Edit
+                                                Employer's Information
                                             </a>
+                                            <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                href="#">
+                                                Bank's Information
+                                            </a>
+                                            <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                href="#">
+                                                Co-Borrowers's Information
+                                            </a>
+                                            <a class="flex items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
+                                                href="#">
+                                                Requirements Information
+                                            </a>
+                                        </div>
+                                        <div class="py-2 first:pt-0 last:pb-0">
+                                           
                                             <button class="flex w-full items-center gap-x-3 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300"
                                                @click="deleteLoanInformation(loan)">
                                                 Delete
@@ -127,6 +149,7 @@
                 </tbody>
             </table>
         </div>
+        <PersonalInformationModal v-model:personalInformationModal="personalInformationModal" :personalInformation="personalInformation" @on-close-modal="personalInformationModal = false"/>
         <ConfirmationModal :confirmationModal="confirmationModal" v-model:isConfirmationModalOpen="isConfirmationModalOpen"/>
     </div>
 </template>
@@ -139,7 +162,7 @@ import Toast from '@/Components/Toast/Index.vue';
 import { downloadZip } from '@/utility/downloadFile';
 import { router } from '@inertiajs/vue3';
 import ConfirmationModal from '@/Components/Modal/ConfirmationModal.vue';
-
+import PersonalInformationModal from '@/Components/Apply/PersonalInformationModal.vue';
 const objToast = ref(null);
 const sortColumn = ref('');
 const sortDirection = ref('asc');
@@ -148,6 +171,13 @@ const confirmationModal = ref(null);
 const isConfirmationModalOpen = ref(false);
 // Initialize page, loans, and other reactive variables
 const tableData = defineModel('tableData', { default: [] });
+const personalInformationModal = ref(false);
+const personalInformation = ref({});
+
+const editPersonalInfomation = (loan) =>{
+    personalInformation.value = loan.personal_information;
+    personalInformationModal.value = true;
+}
 
 
 const deleteLoanInformation  = (loan)=>{

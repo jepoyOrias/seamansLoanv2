@@ -6,7 +6,7 @@
             <!-- Stats -->
             <div class="shadow-lg py-3 lg:shadow-none lg:bg-transparent">
                 <h4 class="text-lg sm:text-xl font-semibold text-gray-800 dark:text-blue-100">Loan Applications</h4>
-                <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-blue-500 dark:text-yellow-500">{{ applications }}</p>
+                <p class="mt-2 sm:mt-3 text-4xl sm:text-6xl font-bold text-blue-500 dark:text-yellow-500">{{ applications}}</p>
             </div>
             <!-- End Stats -->
 
@@ -41,7 +41,7 @@ const releasedApplications = ref(page.props.releasedApplications);
 
 function countUp(target, duration, item) {
     const increment = (target - item.value) / duration;
-    let current = item.value;
+    let current =  item.value;
 
     const timer = setInterval(() => {
         current += increment;
@@ -51,12 +51,12 @@ function countUp(target, duration, item) {
             clearInterval(timer);
             item.value = target;
         }
-    }, 500); // Update interval to 500 milliseconds
+    }, 0); // Update interval to 500 milliseconds
 }
 
 onMounted(()=>{
-    countUp(page.props.pendingApplications, 200, pendingApplications);
-    countUp(page.props.applications, 2000, applications);
-    countUp(page.props.releasedApplications, 2000, releasedApplications);
+    countUp(parseInt(page.props.pendingApplications) + 10000 , 200, pendingApplications);
+    countUp(page.props.applications +  10000  , 200, applications );
+    countUp(page.props.releasedApplications + 10000  , 200, releasedApplications );
 })
 </script>

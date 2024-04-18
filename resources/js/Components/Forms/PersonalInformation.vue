@@ -10,9 +10,9 @@
       <InputText v-if="value.inputType === 'text'" class="my-3" v-model:model="personalInformation[key]" :field="key"
         :inputType="value.inputType" @input="validator.removeError(key)" :objValidator="validator" />
       <div v-else-if="value.inputType === 'date'">
-        <vue-tailwind-datepicker @select-month="removeError()" v-model="personalInformation[key]" :formatter="{
-        date: 'MMMM DD, YYYY',
-        month: 'MMMM',
+        <vue-tailwind-datepicker v-model="personalInformation[key]" :formatter="{
+      date: 'YYYY-MM-DD',
+      month: 'MMMM',
 
     }" as-single :input-classes="{
       'focus:border-red-500 focus:ring-red-500 border-red-500':
@@ -98,7 +98,7 @@
       'dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400':
         !validator.hasError(key),
       'py-3 px-4 block w-full rounded-lg text-sm relative dark:text-white dark:bg-gray-800 ': true,
-    }"  v-model="personalInformation[key]" @change="validator.removeError(key)">
+    }" v-model="personalInformation[key]" @change="validator.removeError(key)">
           <option disabled>Open this select menu</option>
           <option v-for="(option, index) in value.options" :key="index" :value="option.value">
             {{ option.label }}
@@ -117,7 +117,7 @@
 <script setup>
 import InputText from "@/Components/Input/InputText.vue";
 import VueTailwindDatepicker from "vue-tailwind-datepicker";
-import { computed, ref, watchEffect } from "vue";
+import { computed, ref, watch, watchEffect } from "vue";
 const personalInformation = defineModel("personalInformation", { default: {} });
 const validator = defineModel("objValidator");
 
@@ -127,14 +127,30 @@ const filteredEntries = computed(() => {
   );
 });
 
+
+
 const selectedGender = ref("");
+
 watchEffect(() => {
-  if (selectedGender.value == "Others") {
-    personalInformation.value.gender = "";
-  } else {
+  if(selectedGender.value !== "Others") {
+    console.log(selectedGender);
     personalInformation.value.gender = selectedGender.value;
+  }else{
+    personalInformation.value.gender = personalInformation.value.gender;
   }
+
 });
+
+watchEffect(() => {
+  if (personalInformation.value.gender !== "Male" && personalInformation.value.gender !== "Female" && personalInformation.value.gender !== "") {
+    selectedGender.value = "Others"
+  } else{
+    console.log(selectedGender);
+    selectedGender.value = personalInformation.value.gender
+  }
+
+});
+
 
 
 </script>

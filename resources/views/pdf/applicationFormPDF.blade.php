@@ -125,7 +125,7 @@
                         {{ \Carbon\Carbon::now()->format('m/d/y') }}
                     </div>
                 </td>
-                <td> <img src="{{ asset('images/pdfLogo.jpg') }}" alt="" width="200"></td>
+                <td> <img src="{{ public_path('images/pdfLogo.jpg') }}" alt="" width="200"></td>
             </tr>
         </tbody>
 
@@ -886,7 +886,7 @@
         <td colspan="12"  style="padding: 10px; border: none !important"> 
             <div class="relative" style="min-height: 120px;">
                 <div class="absolute" style="position: absolute; top: 10px; left: 50px;">
-                    <img src="{{ storage_path('storage/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150">
+                    <img src="{{ public_path('storage/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150">
                     <p>{{ $borrower['personal_information']['lastname'] }} {{ $borrower['personal_information']['firstname'] }} {{ $borrower['personal_information']['middlename'] }}</p>
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>

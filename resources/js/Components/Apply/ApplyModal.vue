@@ -29,9 +29,9 @@
                 <div class="flex items-center font-medium px-4 py-5 w-full"
                   :class="{ 'flex items-center font-medium px-4 py-5 w-full rounded-lg bg-blue-50 dark:bg-slate-900': currentStep === index }">
                   <span :class="{
-                          'w-8 h-8  border border-gray-200 dark:text-slate-50 rounded-full flex justify-center items-center mr-3 text-sm  lg:w-10 lg:h-10': true,
-                          'w-8 h-8 dark:bg-transparent dark:border !dark:border-yellow-500 !bg-blue-900 rounded-full flex justify-center items-center mr-3 text-sm text-white dark:text-slate-100 lg:w-10 lg:h-10': currentStep === index,
-                          'w-8 h-8 border border-blue-900 dark:border-yellow-500 !dark:border-slate-100 rounded-full flex justify-center items-center mr-3 text-sm dark:text-yellow-500 lg:w-10 lg:h-10': currentStep > index
+                          'w-8 h-8  border border-gray-200 dark:text-slate-50 rounded-full flex justify-center items-center mr-3 text-sm  lg:w-6 lg:h-6 shrink-0': true,
+                          'w-8 h-8 dark:bg-transparent dark:border !dark:border-yellow-500 !bg-blue-900 rounded-full flex justify-center items-center mr-3 text-sm text-white dark:text-slate-100 lg:w-6 lg:h-6 shrink-0': currentStep === index,
+                          'w-8 h-8 border border-blue-900 dark:border-yellow-500 !dark:border-slate-100 rounded-full flex justify-center items-center mr-3 text-sm dark:text-yellow-500 lg:w-6 lg:h-6 shrink-0': currentStep > index
                         }">{{ index + 1 }}</span>
                   <h4 class="text-blue-900   dark:text-yellow-500">
                 {{ index == 0 ? "Agreement" : index == 1 ? "Borrower's Informations" : index == 2 ? "Co-Borrower's Information" : ' Submit Requirements'}}
@@ -115,7 +115,6 @@ import axios from 'axios';
 
 const ModalisOpen = defineModel('isApplyNowModal');
 const emit = defineEmits(['onCloseModal']);
-const objToast = ref(null);
 const objValidator = ref({ ...objFormValidator });
 
 objValidator.value.default = {

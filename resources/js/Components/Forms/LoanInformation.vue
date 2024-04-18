@@ -44,7 +44,8 @@
                 </div>
             </div>
             <InputText v-else class="my-3" v-model:model="loanInformation[key]" :field="key" 
-                v-model:objValidator="validator" @input="validator.removeError(key)" />
+                v-model:objValidator="validator" 
+                @input="key == 'amount' ? formatInput($event, key) : validator.removeError(key)" />
 
         </div>
     </div>
@@ -67,6 +68,24 @@ onMounted(()=>{
     selectedPurpose.value =  loanInformation.value.loan_purpose;
 
 })
+
+
+
+const formatInput = (event, key) => {
+    // Remove non-numeric characters from input
+    let rawValue = event.target.value;
+    let numericValue = parseFloat(rawValue.replace(/[^0-9.]/g, ''));
+
+    // Format the number as currency
+    let formattedValue = numericValue.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+    // Update the data property with the formatted value
+    loanInformation.value[key] = formattedValue;
+}
+
 
 const GetSelectedOption = ($event,key)=>{
     console.log($event);

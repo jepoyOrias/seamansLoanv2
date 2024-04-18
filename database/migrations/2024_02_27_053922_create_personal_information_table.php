@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('middlename');
             $table->string('suffix')->nullable();
             $table->string('email')->unique();
+            $table->string('gender');
             $table->string('civil_status');
             $table->date('birth_date');
             $table->string('place_of_birth');

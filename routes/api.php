@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\CreateAdminController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\PdfController;
 use App\Http\Controllers\RepaymentController;
 use App\Http\Controllers\RequirementsController;
 use Illuminate\Http\Request;
@@ -28,3 +29,4 @@ Route::patch('loans/{id}', [LoanController::class, 'update']);
 Route::post('/admin/register', [CreateAdminController::class, 'store'])->name('admin.register');
 Route::get('/user/{userId}/requirements/download', [RequirementsController::class, 'downloadUserRequirements'])
 ->name('user.requirements.download');
+Route::post('/download-application',[PdfController::class, 'generatePDF'])->name('downloadApplication');

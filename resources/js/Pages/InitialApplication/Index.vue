@@ -64,6 +64,7 @@ import { ref, computed, onMounted, watch, inject } from 'vue';
 import LoanTable from './LoanTable.vue';
 import { usePage, router } from '@inertiajs/vue3';
 import Pagination from '@/Components/Pagination/Index.vue';
+
 import Button from '@/Components/Buttons/Index.vue';
 import Toast from '@/Components/Toast/Index.vue';
 import NoData from '@/Components/NoData/Index.vue';
@@ -193,6 +194,7 @@ const generateApplicationForm = (e) => {
       },
       confirmButton: 'Download'
     }
+    console.log(objToast.value)
 
   }).catch(error => console.log(error));
 }

@@ -91,7 +91,7 @@ class LoanController extends Controller
     {
           // Retrieve loans with related data using the service
         $loans = $this->loanService->getLoansWithRelatedData($request->all(), 1);
-
+        
         $statuses= LoanStatus::all();
         return Inertia::render('InitialApplication', [
             'loans' => $loans,

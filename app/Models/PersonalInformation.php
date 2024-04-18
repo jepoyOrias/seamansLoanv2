@@ -17,6 +17,7 @@ class PersonalInformation extends Model
         'suffix',
         'email',
         'civil_status',
+        'gender',
         'birth_date',
         'place_of_birth',
         'present_address',

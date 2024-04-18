@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\LoanController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PdfController;
+use App\Http\Controllers\PersonalInformationController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RepaymentController;
 use App\Http\Controllers\RequirementsController;
@@ -78,6 +79,8 @@ Route::middleware(['auth', 'role:admin', 'verified'])->group(function () {
     ->name('loan.requirements.download');
     
     Route::delete('/loans/{id}', [LoanController::class, 'delete']);
+    
+    Route::put('/personal-information/{id}', [PersonalInformationController::class, 'updatePersonalInformation'])->name('personal-information.update');
 });
 
 require __DIR__.'/auth.php';

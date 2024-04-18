@@ -15,7 +15,7 @@ class PdfController extends Controller
     {
         // Retrieve data from request or database
         $ids = $request->input('ids'); // Assuming you're passing an array of IDs in the request
-
+        set_time_limit(0);
         // Create an array to store PDF file paths
         $pdfFilePaths = [];
 
