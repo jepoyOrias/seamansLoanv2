@@ -179,6 +179,7 @@ const editPersonalInfomation = (loan) =>{
     personalInformationModal.value = true;
 }
 
+console.log(tableData);
 
 const deleteLoanInformation  = (loan)=>{
     isConfirmationModalOpen.value = true;

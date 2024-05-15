@@ -291,18 +291,18 @@ const loan = ref({
     account_number: '',
   },
   requirements: {
-    contract: null,
-    seamans_book: null,
-    passport: null,
-    e_reg: null,
-    sirb: null,
-    bill: null,
-    valid_id_1: null,
-    valid_id_2: null,
-    marriage_contract: null,
-    send_it_thru: null,
+    // contract: null,
+    // seamans_book: null,
+    // passport: null,
+    // e_reg: null,
+    // sirb: null,
+    // bill: null,
+    // valid_id_1: null,
+    // valid_id_2: null,
+    // marriage_contract: null,
+    // send_it_thru: null,
     signature: null,
-    oec: null
+    // oec: null
   }
 })
 
@@ -354,16 +354,16 @@ objValidator.value.fields = {
   office_address: { required: true, inputType: 'text', label: 'Address', type: 'employer_information' },
   
 
-  contract: { required: true, inputType: 'file', label: 'Contract', type: 'requirements' },
-  seamans_book: { required: true, inputType: 'file', label: "Seaman's Book", type: 'requirements' },
-  passport: { required: true, inputType: 'file', label: "Passport", type: 'requirements' },
-  e_reg: { required: true, inputType: 'file', label: 'E-Registration', type: 'requirements' },
-  sirb: { required: true, inputType: 'file', label: 'SIRB LAST STAMP', type: 'requirements' },
-  bill: { required: true, inputType: 'file', label: 'bill', type: 'requirements' },
-  valid_id_1: { required: true, inputType: 'file', label: 'Government Valid ID 1', type: 'requirements' },
-  valid_id_2: { required: true, inputType: 'file', label: 'Government Valid ID 2', type: 'requirements' },
-  marriage_contract: { required: true, inputType: 'file', label: 'Marriage Contract', type: 'requirements' },
-  oec: { required: true, inputType: 'file', label: 'OEC', type: 'requirements' },
+  // contract: { required: true, inputType: 'file', label: 'Contract', type: 'requirements' },
+  // seamans_book: { required: true, inputType: 'file', label: "Seaman's Book", type: 'requirements' },
+  // passport: { required: true, inputType: 'file', label: "Passport", type: 'requirements' },
+  // e_reg: { required: true, inputType: 'file', label: 'E-Registration', type: 'requirements' },
+  // sirb: { required: true, inputType: 'file', label: 'SIRB LAST STAMP', type: 'requirements' },
+  // bill: { required: true, inputType: 'file', label: 'bill', type: 'requirements' },
+  // valid_id_1: { required: true, inputType: 'file', label: 'Government Valid ID 1', type: 'requirements' },
+  // valid_id_2: { required: true, inputType: 'file', label: 'Government Valid ID 2', type: 'requirements' },
+  // marriage_contract: { required: true, inputType: 'file', label: 'Marriage Contract', type: 'requirements' },
+  // oec: { required: true, inputType: 'file', label: 'OEC', type: 'requirements' },
   signature: { required: true, inputType: 'file', label: 'Signature', type: 'requirements' },
 }
 

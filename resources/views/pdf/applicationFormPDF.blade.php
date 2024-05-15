@@ -886,8 +886,10 @@
         <td colspan="12"  style="padding: 10px; border: none !important"> 
             <div class="relative" style="min-height: 120px;">
                 <div class="absolute" style="position: absolute; top: 10px; left: 50px;">
-                    <img src="{{ public_path('storage/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150">
-                    <p>{{ $borrower['personal_information']['lastname'] }} {{ $borrower['personal_information']['firstname'] }} {{ $borrower['personal_information']['middlename'] }}</p>
+                    <div style="position: absolute; top: -10px">
+                     <img src="{{ storage_path('app/public/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150" style="position: absolute; top: -15px; left: 50%; transform: translate-x(-50%)">
+                        <p style="font-size: 12px; position: absolute;top: -4px;left: 50%; transform: translate-x(-20%); width: 150px;">{{ $borrower['personal_information']['lastname'] }} {{ $borrower['personal_information']['firstname'] }} {{ $borrower['personal_information']['middlename'] }}</p>
+                    </div>
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
@@ -965,13 +967,14 @@
         <td colspan="12"  style="padding: 10px; border: none !important"> 
             <div class="relative" style="min-height: 120px;">
                 <div class="absolute" style="position: absolute; top: 10px; left: 50px;">
-                    <img src="{{ public_path('storage/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150">
-                    <p>{{ $borrower['personal_information']['lastname'] }} {{ $borrower['personal_information']['firstname'] }} {{ $borrower['personal_information']['middlename'] }}</p>
+                    <div style="position: absolute; top: -10px">
+                        <img src="{{ storage_path('app/public/' . $borrower['personal_information']['requirements']['signature']) }}" alt="" width="150" style="position: absolute; top: -15px; left: 50%; transform: translate-x(-50%)">
+                        <p style="font-size: 12px; position: absolute;top: -4px;left: 50%; transform: translate-x(-20%); width: 150px;">{{ $borrower['personal_information']['lastname'] }} {{ $borrower['personal_information']['firstname'] }} {{ $borrower['personal_information']['middlename'] }}</p>
+                    </div>
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
                 <div class="absolute" style="position: absolute; top: 10px; right: 50px;">
-                    
                     <p style="font-weight: 700;min-width:150px; border-top: 2px solid #212221;" class="text-center text-size14">Co-Borrower</p>
                     <p class="text-center text-size14">(Signature over printed Name / Date )</p>
                 </div>
